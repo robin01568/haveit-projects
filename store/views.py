@@ -5,11 +5,20 @@ from .models import *
 # Create your views here.
 def home(request):
     products = Product.objects.filter(is_show=True)
+    categories = ProductCategory.objects.all()
+    banners = Banner.objects.all()
+    offer_banners = OfferBanner.objects.all().order_by('-id')[:4]
+    supports = SupportSection.objects.all().last()
 
     context = {
-        'products':products
+        'products':products,
+        'categories':categories,
+        'banners':banners,
+        'offer_banners':offer_banners,
+        'supports':supports,
     }
     return render(request, 'store/index.html',context)
+
 
 
 def product_details(request, id):
@@ -20,9 +29,24 @@ def product_details(request, id):
     }
     return render(request, 'store/product-accordion-full-width.html', context)
 
-
+from django.db.models import Sum
 
 def about(request):
+    # supports = Banner.objects.all() # multitple
+    # supports = Banner.objects.first() # one
+    # supports = Banner.objects.last() # one
+    # supports = Banner.objects.get(id=1) # one
+    # supports = Banner.objects.filter(title__icontains='dgdF explore') # multiple
+    # supports = Banner.objects.filter(title__iexact='dgdF explore') # multiple
+    # supports = Banner.objects.aggregate(amount_sum=Sum('amount')) # multiple
+    # print('supports',supports)
+    # supports = Banner.objects.all().order_by('-amount') # multiple
+    # supports = Banner.objects.values('title', 'amount) # multiple
+    # supports = Banner.objects.filter(id=1).values_list('amount') # multiple
+    # print('supports ',supports)
+
+
+
     return render(request, 'store/about_us.html')
 
 

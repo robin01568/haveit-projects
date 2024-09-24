@@ -6,4 +6,7 @@ admin.site.register(Size)
 admin.site.register(Color)
 admin.site.register(Product)
 admin.site.register(ProductCategory)
+admin.site.register(Banner)
+admin.site.register(OfferBanner)
+admin.site.register(SupportSection)
 

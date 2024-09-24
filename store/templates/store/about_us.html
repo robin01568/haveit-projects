@@ -27,6 +27,15 @@
     </div>
     <!-- Breadcrumb end -->
     
+
+    {% comment %} {% for i in supports %}
+        <p class="text-2xl"> {{ forloop.counter }}------------ {{ i.amount }} {{ i.title }}  </p>
+    {% endfor %} {% endcomment %}
+
+     {% comment %} <p class="text-2xl">{{ supports.amount_sum }}</p> {% endcomment %}
+
+
+
     <!-- About section -->
     <section class="gi-about py-[40px] max-[767px]:py-[30px]">
         <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
