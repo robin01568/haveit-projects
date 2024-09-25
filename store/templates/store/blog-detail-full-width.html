@@ -1,9 +1,9 @@
+{% extends 'store/base.html' %}
+{% load static %}
 
+{% block title %}{{ blogs.title }}{% endblock title %}
 
-
-    {% extends 'store/base.html' %}
-    {% load static %}
-    {% block content %}
+{% block content %}
 
 
 
@@ -21,44 +21,26 @@
                             <div class="gi-single-blog-item">
                                 <div class="single-blog-info">
                                     <figure class="blog-img mb-[16px]">
-                                        <a href="#"><img src="{% static "assets/img/blog/8.jpg" %}" alt="blog imag" class="w-full rounded-[5px]"></a>
+                                        <a href="#"><img src="{{ blogs.image.url }}" alt="blog imag" class="w-full rounded-[5px]"></a>
                                     </figure>
                                     <div class="single-blog-detail">
-                                        <label class="mb-[15px] text-[#999] inline-block">June 30,2022 - <a href="#" class="text-[#999] hover:text-[#5caf90]">Organic</a></label>
-                                        <h3 class="text-[22px] font-semibold text-[#4b5966] leading-[1.2] mb-[6px] max-[767px]:text-[20px] max-[575px]:text-[19px]">Marketing Guide: 5 Steps to Success.</h3>
-                                        <p class="gi-text text-[#777] text-[14px] mb-[16px]">"Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                            text ever since the 1500s, when an unknown printer took a galley of type and
-                                            scrambled it to make a type specimen book. It has survived not only five
-                                            centuries, but also the leap into electronic typesetting, remaining
-                                            essentially unchanged. It was popularised in the 1960s with the release of
-                                            Letraset sheets containing Lorem Ipsum passages, and more recently with
-                                            desktop publishing software like Aldus PageMaker including versions of Lorem
-                                            Ipsum.</p>
-                                        <p class="gi-text-highlight text-[#777] text-[14px] italic font-medium mb-[16px]">The standard chunk of Lorem Ipsum used since the
-                                            1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33
-                                            from "de Finibus Bonorum et Malorum" by Cicero.</p>
-                                        <p class="text-[#777] text-[14px] mb-[16px]">Contrary to popular belief, Lorem Ipsum is not simply random text. It has
-                                            roots in a piece of passages of Lorem Ipsum classical Latin literature from
-                                            45 BC, making it over 2000 years old. Richard McClintock, a Latin professor
-                                            at Hampden-Sydney College in Virginia</p>
+                                        <label class="mb-[15px] text-[#999] inline-block">{{ blogs.date }} - <a href="#" class="text-[#999] hover:text-[#5caf90]">{{ blogs.category.name }}</a></label>
+                                        <h3 class="text-[22px] font-semibold text-[#4b5966] leading-[1.2] mb-[6px] max-[767px]:text-[20px] max-[575px]:text-[19px]">{{ blogs.title }}</h3>
+                                        <p class="gi-text text-[#777] text-[14px] mb-[16px]">{% if blogs.short_description is not none %}{{ blogs.short_description }}{% endif %}</p>
+                                        <p class="gi-text-highlight text-[#777] text-[14px] italic font-medium mb-[16px]">{% if blogs.short_description1 is not none %}{{ blogs.short_description1 }}{% endif %}</p>
+                                        <p class="text-[#777] text-[14px] mb-[16px]">{{ blogs.detail_description }}</p>
                                         <div class="sub-img mt-[30px] mx-[-12px]">
                                             <div class="flex flex-wrap">
                                                 <div class="min-[768px]:w-[50%] w-full px-[12px] mb-[24px]">
-                                                    <img src="{% static "assets/img/blog/3.jpg" %}" alt="blog" class="w-full rounded-[5px]">
+                                                    <img src="{{ blogs.img1.url }}" alt="blog" class="w-full rounded-[5px]">
                                                 </div>
                                                 <div class="min-[768px]:w-[50%] w-full px-[12px] mb-[24px]">
-                                                    <img src="{% static "assets/img/blog/4.jpg" %}" alt="blog" class="w-full rounded-[5px]">
+                                                    <img src="{{ blogs.img2.url }}" alt="blog" class="w-full rounded-[5px]">
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="text-[#777] text-[14px] leading-[28px] mb-[16px]">It is a long established fact that a reader will be distracted by the
-                                            readable content of a page distracted by the readable when looking at its
-                                            layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                                            distribution of letters, as opposed to using.</p>
-                                        <p class="text-[#777] text-[14px] leading-[28px] mb-[16px]">There are many variations of passages of Lorem Ipsum available, but the
-                                            majority have suffered distracted by the readable alteration in some form,
-                                            by injected humour.</p>
+                                        <p class="text-[#777] text-[14px] leading-[28px] mb-[16px]">{% if blogs.short_description2 is not none %}{{ blogs.short_description2 }}{% endif %}</p>
+                                        <p class="text-[#777] text-[14px] leading-[28px] mb-[16px]">{% if blogs.short_description3 is not none %}{{ blogs.short_description3 }}{% endif %}</p>
                                     </div>
                                 </div>
                             </div>

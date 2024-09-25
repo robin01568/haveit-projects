@@ -18,26 +18,26 @@
                     <div class="gi-blogs-content">
                         <div class="gi-blogs-inner">
                             <div class="flex flex-wrap mx-[-12px]">
-                                <div class="min-[992px]:w-[33.33%] min-[768px]:w-[50%] w-full px-[12px]">
-                                    <div class="gi-blog-item">
-                                        <div class="blog-info transition-all duration-[0.3s] ease-in-out w-full mb-[24px] bg-[#fff] rounded-[5px]">
-                                            <figure class="blog-img w-full h-auto m-[0] relative overflow-hidden rounded-[5px]">
-                                                <a href="#"><img src="{% static "assets/img/blog/1.jpg" %}" alt="news imag" class="transition-all duration-[0.3s] ease-in-out rounded-[0] w-full h-full"></a>
-                                            </figure>
-                                            <div class="detail">
-                                                <label class="mt-[20px] inline-block text-[13px] text-[#999]">June 30,2022 - <a href="#" class="text-[#999] hover:text-[#5caf90]">Organic</a></label>
-                                                <h3 class="mt-[10px] mb-[15px] p-[0] leading-[26px]"><a href="#" class="font-Poppins text-[#4b5966] text-[17px] font-medium leading-[22px]">Marketing Guide: 5 Steps to Success.</a></h3>
-                                                <p class="text-length mb-[16px] text-[14px] text-[#777]">"Lorem Ipsum is simply dummy text of the printing
-                                                    and typesetting
-                                                    industry.</p>
-                                                <div class="more-info">
-                                                    <a href="blog-detail-left-sidebar.html" class="text-[#4b5966] text-[13px] flex items-center hover:bg-[#fff] hover:text-[#5caf90]">Read More<i class="gicon gi-angle-double-right transition-all duration-[0.3s] ease-in-out ml-[5px] text-[#4b5966] text-[13px] flex"></i></a>
+                                {% for b in blogs %}
+                                    <div class="min-[992px]:w-[33.33%] min-[768px]:w-[50%] w-full px-[12px]">
+                                        <div class="gi-blog-item">
+                                            <div class="blog-info transition-all duration-[0.3s] ease-in-out w-full mb-[24px] bg-[#fff] rounded-[5px]">
+                                                <figure class="blog-img w-full h-auto m-[0] relative overflow-hidden rounded-[5px]">
+                                                    <a href=""><img src="{{ b.image.url }}" alt="news imag" class="transition-all duration-[0.3s] ease-in-out rounded-[0] w-full h-full"></a>
+                                                </figure>
+                                                <div class="detail">
+                                                    <label class="mt-[20px] inline-block text-[13px] text-[#999]">{{ b.date }} - <a href="{% url "blog_details" b.id %}" class="text-[#999] hover:text-[#5caf90]">{{ b.category.name }}</a></label>
+                                                    <h3 class="mt-[10px] mb-[15px] p-[0] leading-[26px]"><a href="{% url "blog_details" b.id %}" class="font-Poppins text-[#4b5966] text-[17px] font-medium leading-[22px]">{{ b.title }}</a></h3>
+                                                    <p class="text-length mb-[16px] text-[14px] text-[#777]">{{ b.short_description }}</p>
+                                                    <div class="more-info">
+                                                        <a href="{% url "blog_details" b.id %}" class="text-[#4b5966] text-[13px] flex items-center hover:bg-[#fff] hover:text-[#5caf90]">Read More<i class="gicon gi-angle-double-right transition-all duration-[0.3s] ease-in-out ml-[5px] text-[#4b5966] text-[13px] flex"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="min-[992px]:w-[33.33%] min-[768px]:w-[50%] w-full px-[12px]">
+                                {% endfor %}
+                                {% comment %} <div class="min-[992px]:w-[33.33%] min-[768px]:w-[50%] w-full px-[12px]">
                                     <div class="gi-blog-item">
                                         <div class="blog-info transition-all duration-[0.3s] ease-in-out w-full mb-[24px] bg-[#fff] rounded-[5px]">
                                             <figure class="blog-img w-full h-auto m-[0] relative overflow-hidden rounded-[5px]">
@@ -188,7 +188,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                         </div>
                         <!-- Pagination Start -->

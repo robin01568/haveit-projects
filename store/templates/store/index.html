@@ -190,7 +190,6 @@
                     </div>
                     <div class="gi-deal-block mx-[-12px]" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">
                         <div class="deal-slick-carousel flex gi-product-slider">
-                            
                             {% for i in products %}
                             <div class="gi-product-content h-full px-[12px] flex">
                                 <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
@@ -227,7 +226,7 @@
                                             <h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] leading-[1.2] capitalize"> {{ i.category.name }} </h6>
                                         </a>
                                         <h5 class="gi-pro-title h-full mb-[10px] text-[16px]">
-                                            <a href="{% url 'product_details' i.id %}" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ i.title }} </a>
+                                            <a href="{% url 'product_details' i.id %}" class="block text-[14px] leading-[22px] font-normal text-[#4b5966] tracking-[0.85px] capitalize font-Poppins hover:text-[#5caf90]">{{ i.title }}</a>
                                         </h5>
                                         <div class="gi-pro-rat-price mt-[5px] mb-[0] flex flex-col">
                                             <span class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
@@ -252,8 +251,6 @@
                                 </div>
                             </div>
                             {% endfor %}
-                                
-                            
                             {% comment %} <div class="gi-product-content h-full px-[12px] flex">
                                 <div class="gi-product-inner transition-all duration-[0.3s] ease-in-out cursor-pointer flex flex-col overflow-hidden border-[1px] border-solid border-[#eee] rounded-[5px]">
                                     <div class="gi-pro-image-outer transition-all duration-[0.3s] delay-[0s] ease z-[11] relative">
@@ -585,12 +582,12 @@
             <div class="w-full">
                 
                 {% for i in offer_banners %}
-                    {% if forloop.first %}
+                    {% if forloop.last %}
                     <div class="gi-animated-banner w-full bg-[url('{{ i.image.url }}')] bg-center bg-no-repeat bg-cover overflow-hidden relative rounded-[5px]" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="200">
                         <div class="gi-bnr-detail h-full py-[80px] px-[100px] max-[991px]:p-[50px] max-[420px]:p-[15px] flex flex-col justify-center items-end text-right relative">
                             <div class="gi-bnr-info">
-                                <h2 class="text-[50px] max-[1399px]:text-[38px] max-[1199px]:text-[30px] max-[991px]:text-[28px] max-[767px]:text-[20px] max-[480px]:text-[18px] font-bold text-[#4b5966] leading-[65px] max-[1199px]:leading-[40px] max-[991px]:leading-[35px] max-[767px]:leading-[27px] max-[480px]:leading-[25px] z-[2] relative">Fresh Fruits <br>Healthy Products</h2>
-                                <h3 class="mt-[15px] mb-[15px] text-[#5caf90] leading-[1.2] font-semibold text-[1.75rem] max-[991px]:text-[20px] max-[767px]:text-[16px] max-[767px]:mt-[5px]">30% off sale <span class="text-[#777] font-normal">Hurry up!!!</span></h3>
+                                <h2 class="text-[50px] max-[1399px]:text-[38px] max-[1199px]:text-[30px] max-[991px]:text-[28px] max-[767px]:text-[20px] max-[480px]:text-[18px] font-bold text-[#4b5966] leading-[65px] max-[1199px]:leading-[40px] max-[991px]:leading-[35px] max-[767px]:leading-[27px] max-[480px]:leading-[25px] z-[2] relative">{{ i.title }}<br>{{ i.sub_title }}</h2>
+                                <h3 class="mt-[15px] mb-[15px] text-[#5caf90] leading-[1.2] font-semibold text-[1.75rem] max-[991px]:text-[20px] max-[767px]:text-[16px] max-[767px]:mt-[5px]">{{ i.discount }}% off sale <span class="text-[#777] font-normal">Hurry up!!!</span></h3>
                                 <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 mt-[15px] transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[5px] max-[767px]:py-[6px] px-[10px] max-[767px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[767px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]">Shop now</a>
                             </div>
                         </div>
@@ -3061,26 +3058,30 @@
     </div>
 </section>
 <!-- Service Section End -->
-
+ 
 <!-- Trending, Top Rated Start -->
 <section class="gi-offer-section overflow-hidden py-[40px] max-[767px]:py-[30px]">
     <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
         <div class="w-full flex flex-wrap">
             <!-- Banner -->
-            <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] gi-all-product-content wow fadeInUp">
-                <div class="gi-banner-inner h-full p-[0] flex flex-row items-center justify-between rounded-[5px] overflow-hidden">
-                    <div class="gi-banner-block w-full h-full bg-[url('{% static "assets/img/banner/4.jpg" %}')] bg-center bg-cover bg-no-repeat max-[767px]:h-[450px] max-[767px]:bg-bottom max-[480px]:h-[400px] max-[420px]:h-[350px]">
-                        <div class="banner-block relative flex overflow-hidden justify-center items-center">
-                            <div class="banner-content w-full h-full flex flex-col items-start justify-center p-[30px] cursor-pointer rounded-[30px]">
-                                <div class="banner-text mb-[15px] flex flex-col">
-                                    <span class="gi-banner-title text-[22px] relative leading-[32px] text-[#444] font-semibold tracking-[0] mb-[10px] capitalize max-[420px]:text-[20px]">Our top most products check it now</span>
+            {% for i in offer_banners %}
+                {% if forloop.first %}
+                    <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] gi-all-product-content wow fadeInUp">
+                        <div class="gi-banner-inner h-full p-[0] flex flex-row items-center justify-between rounded-[5px] overflow-hidden">
+                            <div class="gi-banner-block w-full h-full bg-[url('{{ i.image.url }}')] bg-center bg-cover bg-no-repeat max-[767px]:h-[450px] max-[767px]:bg-bottom max-[480px]:h-[400px] max-[420px]:h-[350px]">
+                                <div class="banner-block relative flex overflow-hidden justify-center items-center">
+                                    <div class="banner-content w-full h-full flex flex-col items-start justify-center p-[30px] cursor-pointer rounded-[30px]">
+                                        <div class="banner-text mb-[15px] flex flex-col">
+                                            <span class="gi-banner-title text-[22px] relative leading-[32px] text-[#444] font-semibold tracking-[0] mb-[10px] capitalize max-[420px]:text-[20px]">{{ i.title }}</span>
+                                        </div>
+                                        <a href="{% url 'product_details' i.id %}" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[5px] max-[360px]:py-[3px] px-[15px] max-[360px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[360px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]">Shop Now</a>
+                                    </div>
                                 </div>
-                                <a href="shop-left-sidebar-col-3.html" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[5px] max-[360px]:py-[3px] px-[15px] max-[360px]:px-[10px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] max-[360px]:text-[13px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]">Shop Now</a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                {% endif %}
+            {% endfor %}
             <!-- Trending -->
             <div class="min-[1200px]:w-[25%] min-[768px]:w-[50%] w-full px-[12px] gi-all-product-content max-[767px]:mt-[40px] wow fadeInUp" data-wow-delay=".4s">
                 <div class="w-full">
@@ -3091,24 +3092,28 @@
                     </div>
                 </div>
                 <div class="gi-trending-slider">
+                    {% for i in products %}
                     <div class="w-full gi-all-product-block">
                         <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
                             <div class="gi-pro-image-outer basis-[70px]">
                                 <div class="gi-pro-image overflow-hidden rounded-[15px]">
                                     <a href="product-left-sidebar.html" class="image">
-                                        <img class="main-image w-full" src="{% static "assets/img/product-images/10_1.jpg" %}" alt="Product">
+                                        <img class="main-image w-full" src="{{ i.image.url }}" alt="Product">
                                     </a>
                                 </div>
                             </div>
                             <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize" title="Healthy Nutmix, 200g Pack">Healthy Nutmix, 200g Pack</a></h5>
-                                <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Driedfruit</a></h6>
+                                <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="{% url 'product_details' i.id %}" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize" title="Healthy Nutmix, 200g Pack">{{ i.title }}</a></h5>
+                                <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="{% url 'product_details' i.id %}" class="text-[#999] hover:text-[#5caf90]"> {{ i.category.name }} </a></h6>
                                 <div class="gi-pro-rat-price">
                                     <div class="gi-pro-rat-pri-inner">
                                         <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                            <span class="new-price text-[#4b5966] font-bold text-[14px]">$42.00</span>
-                                            <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$45.00</span>
-                                            <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 5 kg</span>
+                                            {% if i.discount_price %}
+                                                <span class="new-price text-[#4b5966] font-bold text-[14px]">${{ i.discount_price }}</span>
+                                                <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">${{ i.price }}</span>
+                                            {% else %}
+                                                <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">${{ i.price }}</span>
+                                            {% endif %}
                                         </span>
                                     </div>
                                 </div>
@@ -3118,7 +3123,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-full gi-all-product-block">
+                    {% endfor %}
+                    <!-- <div class="w-full gi-all-product-block">
                         <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
                             <div class="gi-pro-image-outer basis-[70px]">
                                 <div class="gi-pro-image overflow-hidden rounded-[15px]">
@@ -3252,7 +3258,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- Top Rated -->
@@ -3265,34 +3271,39 @@
                     </div>
                 </div>
                 <div class="gi-rated-slider">
-                    <div class="w-full gi-all-product-block">
-                        <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                            <div class="gi-pro-image-outer basis-[70px]">
-                                <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                    <a href="product-left-sidebar.html" class="image">
-                                        <img class="main-image w-full" src="{% static "assets/img/product-images/17_1.jpg" %}" alt="Product">
+                    {% for i in products %}
+                        <div class="w-full gi-all-product-block">
+                            <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
+                                <div class="gi-pro-image-outer basis-[70px]">
+                                    <div class="gi-pro-image overflow-hidden rounded-[15px]">
+                                        <a href="product-left-sidebar.html" class="image">
+                                            <img class="main-image w-full" src="{{ i.image.url }}" alt="Product">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
+                                    <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="{% url 'product_details' i.id %}" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">{{ i.title }}</a></h5>
+                                    <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="{% url 'product_details' i.id %}" class="text-[#999] hover:text-[#5caf90]">{{ i.category.name }}</a></h6>
+                                    <div class="gi-pro-rat-price">
+                                        <div class="gi-pro-rat-pri-inner">
+                                            <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
+                                            {% if i.discount_price %}
+                                                <span class="new-price text-[#4b5966] font-bold text-[14px]">${{ i.discount_price }}</span>
+                                                <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">${{ i.price }}</span>
+                                            {% else %}
+                                                <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">${{ i.price }}</span>
+                                            {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
+                                        <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
                                     </a>
                                 </div>
                             </div>
-                            <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Ginger - Organic</a></h5>
-                                <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">vegetables</a></h6>
-                                <div class="gi-pro-rat-price">
-                                    <div class="gi-pro-rat-pri-inner">
-                                        <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                            <span class="new-price text-[#4b5966] font-bold text-[14px]">$62.00</span>
-                                            <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$65.00</span>
-                                            <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 1 kg</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                    <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                </a>
-                            </div>
                         </div>
-                    </div>
-                    <div class="w-full gi-all-product-block">
+                    {% endfor %}
+                    {% comment %} <div class="w-full gi-all-product-block">
                         <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
                             <div class="gi-pro-image-outer basis-[70px]">
                                 <div class="gi-pro-image overflow-hidden rounded-[15px]">
@@ -3426,7 +3437,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
             <!-- Top Selling -->
@@ -3439,34 +3450,39 @@
                     </div>
                 </div>
                 <div class="gi-trending-slider">
-                    <div class="w-full gi-all-product-block">
-                        <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
-                            <div class="gi-pro-image-outer basis-[70px]">
-                                <div class="gi-pro-image overflow-hidden rounded-[15px]">
-                                    <a href="product-left-sidebar.html" class="image">
-                                        <img class="main-image w-full" src="{% static "assets/img/product-images/18_1.jpg" %}" alt="Product">
+                    {% for i in products %}
+                        <div class="w-full gi-all-product-block">
+                            <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
+                                <div class="gi-pro-image-outer basis-[70px]">
+                                    <div class="gi-pro-image overflow-hidden rounded-[15px]">
+                                        <a href="product-left-sidebar.html" class="image">
+                                            <img class="main-image w-full" src="{{ i.image.url }}" alt="Product">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
+                                    <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="{% url 'product_details' i.id %}" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">{{ i.title }}</a></h5>
+                                    <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="{% url 'product_details' i.id %}" class="text-[#999] hover:text-[#5caf90]">{{ i.category.name }}</a></h6>
+                                    <div class="gi-pro-rat-price">
+                                        <div class="gi-pro-rat-pri-inner">
+                                            <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
+                                                {% if i.discount_price %}
+                                                    <span class="new-price text-[#4b5966] font-bold text-[14px]">${{ i.discount_price }}</span>
+                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">${{ i.price }}</span>
+                                                {% else %}
+                                                    <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">${{ i.price }}</span>
+                                                {% endif%}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
+                                        <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
                                     </a>
                                 </div>
                             </div>
-                            <div class="gi-pro-content w-[calc(100%-70px)] basis-[calc(100%-70px)] pl-[15px]">
-                                <h5 class="gi-pro-title text-[16px] mb-[5px]"><a href="product-left-sidebar.html" class="text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block font-Poppins text-[14px] leading-[24px] font-medium tracking-[0.2px] capitalize">Lemon - Seedless</a></h5>
-                                <h6 class="gi-pro-stitle text-[#777] whitespace-nowrap overflow-hidden text-ellipsis block text-[13px] leading-[24px] font-normal tracking-[0.3px] capitalize mb-[5px]"><a href="shop-left-sidebar-col-3.html" class="text-[#999] hover:text-[#5caf90]">Vegetables</a></h6>
-                                <div class="gi-pro-rat-price">
-                                    <div class="gi-pro-rat-pri-inner">
-                                        <span class="gi-price text-[14px] flex items-center text-[#5caf90]">
-                                            <span class="new-price text-[#4b5966] font-bold text-[14px]">$42.00</span>
-                                            <span class="old-price text-[12px] line-through text-[#777] ml-[9px]">$45.00</span>
-                                            <span class="qty text-[12px] text-[#777] ml-[9px] hidden">- 5 kg</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <a href="javascript:void(0)" class="add-to-cart w-[30px] h-[30px] absolute bottom-[10px] right-[10px] bg-[#fff] rounded-[3px] border-[1px] border-solid border-[#eee] flex items-center justify-center opacity-[0] max-[991px]:opacity-[1]" title="Add To Cart">
-                                    <i class="fi-rr-shopping-basket text-[18px] text-[#777] leading-[0]"></i>
-                                </a>
-                            </div>
                         </div>
-                    </div>
-                    <div class="w-full gi-all-product-block">
+                    {% endfor %}
+                    {% comment %} <div class="w-full gi-all-product-block">
                         <div class="gi-all-product-inner mr-[1px] p-[15px] flex flex-wrap items-center bg-[#fff] border-[1px] border-solid border-[#eee] overflow-hidden relative rounded-[5px]">
                             <div class="gi-pro-image-outer basis-[70px]">
                                 <div class="gi-pro-image overflow-hidden rounded-[15px]">
@@ -3600,7 +3616,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>
@@ -3622,21 +3638,23 @@
                 </span>
             </div>
             <div class="gi-blog-carousel owl-carousel px-[12px]">
-                <div class="gi-blog-item">
-                    <div class="blog-info transition-all duration-[0.3s] ease-in-out w-full mb-[24px] bg-[#fff] rounded-[5px]">
-                        <figure class="blog-img w-full h-auto m-[0] relative overflow-hidden rounded-[5px]">
-                            <a href="#"><img src="{% static "assets/img/blog/1.jpg" %}" alt="news imag" class="transition-all duration-[0.3s] ease-in-out rounded-[5px] h-full w-full"></a>
-                        </figure>
-                        <div class="detail w-full m-[0]">
-                            <label class="mt-[20px] inline-block text-[13px] text-[#999] rounded-[5px]">June 30,2022 - <a href="#" class="transition-all duration-[0.3s] ease-in-out text-[#999] hover:text-[#5caf90]">Organic</a></label>
-                            <h3 class="mt-[10px] mb-[15px] p-[0] leading-[26px]"><a href="#" class="font-Poppins text-[#4b5966] text-[17px] font-medium leading-[22px]">Marketing Guide: 5 Steps to Success to way.</a></h3>
-                            <div class="more-info">
-                                <a href="blog-detail-left-sidebar.html" class="transition-all duration-[0.3s] ease-in-out text-[#4b5966] text-[13px] flex items-center hover:bg-[#fff] hover:text-[#5caf90]">Read More<i class="fi-rr-angle-double-small-right transition-all duration-[0.3s] ease-in-out ml-[5px] text-[#4b5966] text-[13px] flex"></i></a>
+                {% for b in blogs %}
+                    <div class="gi-blog-item">
+                        <div class="blog-info transition-all duration-[0.3s] ease-in-out w-full mb-[24px] bg-[#fff] rounded-[5px]">
+                            <figure class="blog-img w-full h-auto m-[0] relative overflow-hidden rounded-[5px]">
+                                <a href="#"><img src="{{ b.image.url }}" alt="news imag" class="transition-all duration-[0.3s] ease-in-out rounded-[5px] h-full w-full"></a>
+                            </figure>
+                            <div class="detail w-full m-[0]">
+                                <label class="mt-[20px] inline-block text-[13px] text-[#999] rounded-[5px]">June 30,2022 - <a href="{% url "blog_details" b.id %}" class="transition-all duration-[0.3s] ease-in-out text-[#999] hover:text-[#5caf90]">{{ b.category.name }}</a></label>
+                                <h3 class="mt-[10px] mb-[15px] p-[0] leading-[26px]"><a href="{% url "blog_details" b.id %}" class="font-Poppins text-[#4b5966] text-[17px] font-medium leading-[22px]">{{ b.title }}</a></h3>
+                                <div class="more-info">
+                                    <a href="{% url "blog_details" b.id %}" class="transition-all duration-[0.3s] ease-in-out text-[#4b5966] text-[13px] flex items-center hover:bg-[#fff] hover:text-[#5caf90]">Read More<i class="fi-rr-angle-double-small-right transition-all duration-[0.3s] ease-in-out ml-[5px] text-[#4b5966] text-[13px] flex"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="gi-blog-item">
+                {% endfor %}
+                {% comment %} <div class="gi-blog-item">
                     <div class="blog-info">
                         <figure class="blog-img w-full h-auto m-[0] relative overflow-hidden rounded-[5px]">
                             <a href="#"><img src="{% static "assets/img/blog/2.jpg" %}" alt="news imag" class="transition-all duration-[0.3s] ease-in-out rounded-[5px] h-full w-full"></a>
@@ -3705,7 +3723,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
     </div>

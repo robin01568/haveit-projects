@@ -3,21 +3,26 @@ from .views import *
 
 urlpatterns = [
     path('', home, name="home"),
+    path('product-page/', product_page, name="product_page"),
+    path('product-category-page/<int:id>', product_category_page, name="product_category_page"),
     path('product_details/<int:id>', product_details, name="product_details"),
     path('about_us/', about, name="about_us"),
+    path('blog_full_width/', blog_full_width, name="blog_full_width"),
+    path('blog_details/<int:id>', blog_details, name='blog_details'),
+
+
+
     path('contact_us/', contact, name="contact_us"),
     path('carts/', carts, name="carts"),
     path('checkout/', checkout, name="checkout"),
     path('compare/', compare, name="compare"),
-    path('faq/', faq, name="faq"),
+    path('faqs/', faqs, name="faqs"),
     path('track_order/', track_order, name="track_order"),
     path('terms_condition/', terms_condition, name="terms_condition"),
     path('privacy_policy/', privacy_policy, name="privacy_policy"),
     path('wishlist/', wishlist, name="wishlist"),
-    path('blog_detail_full_width/', blog_detail_full_width, name="blog_detail_full_width"),
     path('blog_left_sidebar/', blog_left_sidebar, name="blog_left_sidebar"),
     path('blog_right_sidebar/', blog_right_sidebar, name="blog_right_sidebar"),
-    path('blog_full_width/', blog_full_width, name="blog_full_width"),
     path('blog_detail_left_sidebar/', blog_detail_left_sidebar, name="blog_detail_left_sidebar"),
     path('blog_detail_right_sidebar/', blog_detail_right_sidebar, name="blog_detail_right_sidebar"),
     path('shop_banner_left_sidebar_col_3/', shop_banner_left_sidebar_col_3, name="shop_banner_left_sidebar_col_3"),

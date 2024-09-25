@@ -15,121 +15,51 @@
                 <p class="max-w-[400px] mt-[15px] text-[14px] text-[#777] text-center leading-[23px]">Customer service management.</p>
             </div>
             <div class="w-full flex flex-wrap">
-                <div class="min-[992px]:w-[50%] w-full px-[12px]">
-                    <div class="gi-accordion style-1">
-                        <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
-                            <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                What is the multi vendor services?
-                            </h4>
-                            <div class="gi-accordion-body show py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever since the 1500s,
-                                when an
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </div>
-                        </div>
-                        <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
-                            <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                How to buy many products at a time?
-                            </h4>
-                            <div class="gi-accordion-body py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever.
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </div>
-                        </div>
-                        <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
-                            <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                Refund policy for customer.
-                            </h4>
-                            <div class="gi-accordion-body py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </div>
-                        </div>
-                        <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
-                            <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                Exchange policy for customer.
-                            </h4>
-                            <div class="gi-accordion-body py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever since the 1500s,
-                                when an Ipsum has been the industry's
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </div>
-                        </div>
-                        <div class="gi-accordion-item border-[#eee] overflow-hidden">
-                            <h2 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                Give a way products available.
-                            </h2>
-                            <div class="gi-accordion-body py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever since the 1500s,
-                                when an
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever since the 1500s.
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% for f in faqs %}
                 <div class="min-[992px]:w-[50%] w-full px-[12px] max-[991px]:mt-[30px]">
                     <div class="gi-accordion style-1">
                         <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
                             <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                Refund policy for customer.
+                                {{ f.questions }}
                             </h4>
-                            <div class="gi-accordion-body show py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever since the 1500s,
-                                when an
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </div>
-                        </div>
-                        <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
-                            <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                Exchange policy for customer.
-                            </h4>
-                            <div class="gi-accordion-body py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever since the 1500s,
-                                when an Ipsum has been the industry's
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </div>
-                        </div>
-                        <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
-                            <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                How to buy many products at a time?
-                            </h4>
-                            <div class="gi-accordion-body py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever.
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </div>
-                        </div>
-                        <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
-                            <h2 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                Give a way products available.
-                            </h2>
-                            <div class="gi-accordion-body py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever since the 1500s,
-                                when an
-                                Ipsum has been the industry's standard <code class="text-[#5caf90] text-[14px] font-semibold">dummy text</code> ever since the 1500s.
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </div>
-                        </div>
-                        <div class="gi-accordion-item border-[#eee] overflow-hidden">
-                            <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
-                                What is the multi vendor services?
-                            </h4>
-                            <div class="gi-accordion-body py-[15px] text-[14px] text-[#777] leading-[24px] hidden">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem
-                                unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            <div class="gi-accordion-body show py-[15px] text-[14px] text-[#777] leading-[24px] hidden">{{ f.answer }}
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
+            {% comment %} <div class="w-full flex flex-wrap">
+                <div class="min-[992px]:w-[50%] w-full px-[12px]">
+                    <div class="gi-accordion style-1">
+
+                        {% for f in faqs %}
+                            <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
+                                <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
+                                    {{ f.questions }}
+                                </h4>
+                                <div class="gi-accordion-body show py-[15px] text-[14px] text-[#777] leading-[24px] hidden">{{ f.answer }}
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="min-[992px]:w-[50%] w-full px-[12px] max-[991px]:mt-[30px]">
+                    <div class="gi-accordion style-1">
+                    {% for f in faqs %}
+                        <div class="gi-accordion-item border-[#eee] overflow-hidden mb-[10px]">
+                            <h4 class="gi-accordion-header m-[0] py-[15px] pl-[30px] pr-[35px] bg-[#f8f8fb] text-[#4b5966] text-[16px] leading-[28px] font-medium relative font-Poppins border-[1px] border-solid border-[#eee] rounded-[5px] tracking-[0.01rem] max-[767px]:text-[15px]">
+                                {{ f.questions }}
+                            </h4>
+                            <div class="gi-accordion-body show py-[15px] text-[14px] text-[#777] leading-[24px] hidden">{{ f.answer }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div> {% endcomment %}
         </div>
     </section>
     <!-- Faq section End -->

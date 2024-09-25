@@ -23,6 +23,7 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email=email, password=password, **extra_fields)
 
 
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     phone = models.CharField(max_length=15, unique=True, null=True, blank=True)
     email = models.EmailField(unique=True, null=True, blank=True)
@@ -38,15 +39,30 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return  self.email or self.phone or  "Unnamed User"
+        return  self.email or self.phone or "Unnamed User"
 
+
+
+    
 
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="sellerpicture", default='avatar.png')
-
+    date_of_birth = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    address = models.CharField(max_length=255, null=True, blank=True)
+    GENDER_CHOICES = (
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
+    )
+    gender = models.CharField(
+        max_length=10,
+        choices=GENDER_CHOICES,
+        null=True,
+        blank=True,
+    )
     def __str__(self):
-        return self.user.phone or self.user.email
+        return self.user.email or self.user.phone 
 
     class Meta:
         verbose_name_plural = "Profiles"

@@ -9,6 +9,7 @@ def home(request):
     banners = Banner.objects.all()
     offer_banners = OfferBanner.objects.all().order_by('-id')[:4]
     supports = SupportSection.objects.all().last()
+    blogs = blog.objects.all()
 
     context = {
         'products':products,
@@ -16,8 +17,60 @@ def home(request):
         'banners':banners,
         'offer_banners':offer_banners,
         'supports':supports,
+        'blogs':blogs,
     }
     return render(request, 'store/index.html',context)
+
+
+
+def product_page(request):
+    products = Product.objects.filter(is_show=True)
+    categories = ProductCategory.objects.all()
+    sizes = Size.objects.all()
+    colors = Color.objects.all()
+    context = {
+        'products':products,
+        'categories':categories,
+        'sizes':sizes,
+        'colors':colors,
+    }
+    return render(request, 'store/product-page.html',context)
+
+
+def product_category_page(request, id):
+    category = ProductCategory.objects.get(id=id)
+    size_id = request.GET.get('size_id')
+    color_id = request.GET.get('color_id')
+    color = None
+    size = None
+    if color_id:
+        color = Color.objects.get(id=color_id)
+    if size_id:
+        size = Size.objects.get(id=size_id)
+
+    if size:
+        products = Product.objects.filter(is_show=True, category=category, size__name__icontains=size)
+    if color:
+        products = Product.objects.filter(is_show=True, category=category, color__name__icontains=color)
+    if size and color:
+        products = Product.objects.filter(is_show=True, category=category, size__name__icontains= size, color__name__icontains=color)
+    else:
+        products = Product.objects.filter(is_show=True, category=category)
+
+    categories = ProductCategory.objects.all()
+    sizes = Size.objects.all()
+    colors = Color.objects.all()
+    context = {
+        'category':category,
+        'size':size,
+        'color':color,
+        'products':products,
+        'categories':categories,
+        'sizes':sizes,
+        'colors':colors,
+    }
+    return render(request, 'store/product-page.html',context)
+
 
 
 
@@ -29,24 +82,52 @@ def product_details(request, id):
     }
     return render(request, 'store/product-accordion-full-width.html', context)
 
-from django.db.models import Sum
+
+
+
+
+
+
+
+
+def blog_full_width(request):
+    blogs = blog.objects.all()
+    
+    context = {
+        'blogs':blogs
+    }
+    return render(request, 'store/blog-full-width.html', context)
+
+
+
+def blog_details(request, id):
+    blogs = blog.objects.get(id=id)
+
+    context = {
+        'blogs':blogs
+    }
+    return render(request, 'store/blog-detail-full-width.html', context)
+
+
+
+
+def faqs(request):
+    faqs = faq.objects.all()
+    
+    context = {
+        'faqs':faqs
+    }
+    
+    return render(request, 'store/faq.html', context)
+
+
+
+
+
+
+
 
 def about(request):
-    # supports = Banner.objects.all() # multitple
-    # supports = Banner.objects.first() # one
-    # supports = Banner.objects.last() # one
-    # supports = Banner.objects.get(id=1) # one
-    # supports = Banner.objects.filter(title__icontains='dgdF explore') # multiple
-    # supports = Banner.objects.filter(title__iexact='dgdF explore') # multiple
-    # supports = Banner.objects.aggregate(amount_sum=Sum('amount')) # multiple
-    # print('supports',supports)
-    # supports = Banner.objects.all().order_by('-amount') # multiple
-    # supports = Banner.objects.values('title', 'amount) # multiple
-    # supports = Banner.objects.filter(id=1).values_list('amount') # multiple
-    # print('supports ',supports)
-
-
-
     return render(request, 'store/about_us.html')
 
 
@@ -72,8 +153,7 @@ def compare(request):
 
 
 
-def faq(request):
-    return render(request, 'store/faq.html')
+
 
 
 
@@ -106,11 +186,6 @@ def wishlist(request):
 
 
 
-def blog_detail_full_width(request):
-    return render(request, 'store/blog-detail-full-width.html')
-
-
-
 def blog_left_sidebar(request):
     return render(request, 'store/blog-left-sidebar.html')
 
@@ -121,8 +196,6 @@ def blog_right_sidebar(request):
 
 
 
-def blog_full_width(request):
-    return render(request, 'store/blog-full-width.html')
 
 
 
