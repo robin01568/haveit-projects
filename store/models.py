@@ -1,8 +1,25 @@
 from django.db import models
 from UserAccount.models import CustomUser
-
+from phone_field import PhoneField
 
 # Create your models here.
+class WebsiteInfo(models.Model):
+    logo = models.ImageField(upload_to='web-logo')
+    contact1 = PhoneField(blank=True, null=True, help_text='Contact phone number')
+    contact2 = PhoneField(blank=True, null=True, help_text='Contact phone number')
+    email1 = models.EmailField(blank=True, null=True)
+    email2 = models.EmailField(blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
+    address1 = models.TextField(blank=True, null=True)
+    address2 = models.TextField(blank=True, null=True)
+    locations = models.URLField(max_length=1000, blank=True, null=True)
+
+    def __str__(self):
+        return f'Website Info Id:{self.id}'
+
+# https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d456.4274610640328!2d90.42616504843001!3d23.76806489560369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf537d1f2e09%3A0x8fe7a3faf331a140!2z4KaH4KaJ4Kao4Ka_4Kat4Ka-4Kaw4KeN4Ka4IOCmh-CmnyDgpofgpqjgprjgp43gpp_gpr_gpp_gpr_gpongpp8!5e0!3m2!1sbn!2sbd!4v1727514123372!5m2!1sbn!2sbd
+
+
 class Color(models.Model):
     name = models.CharField(max_length=200, unique=True)
 
@@ -112,9 +129,74 @@ class blog(models.Model):
     def __str__(self):
         return self.title
     
+
+class BlogComment(models.Model):
+    blog = models.ForeignKey(blog, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    
+    def __str__(self):
+        return self.name
+    
+
+
+class ContactUs(models.Model):
+    full_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    massage = models.TextField(max_length=255)
+    date = models.DateField(auto_created=True, auto_now_add=True)
+    
+    def __str__(self):
+        return self.full_name
+    
+    
+    
+class AboutUs(models.Model):
+    name = models.CharField(max_length=255)
+    short_description = models.TextField(blank=True, null=True)
+    description1 = models.TextField(blank=True, null=True)
+    description2 = models.TextField(blank=True, null=True)
+    description3 = models.TextField(blank=True, null=True)
+    description4 = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='About_us-image')
+    img1 = models.ImageField(upload_to='About_us-image', blank=True, null=True)
+    img2 = models.ImageField(upload_to='About_us-image', blank=True, null=True)
+    
+    def __str__(self):
+        return self.name
+    
+    
+    
+    
+    
     
     
     
 class faq(models.Model):
     questions = models.CharField(max_length=255)
     answer = models.TextField()
+    
+    def __str__(self):
+        return self.questions
+    
+    
+    
+    
+class TermsCondition(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    
+    def __str__(self):
+        return self.title
+    
+    
+    
+    
+class PrivacyPolicy(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    
+    def __str__(self):
+        return self.title

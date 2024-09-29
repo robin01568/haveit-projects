@@ -1,6 +1,7 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
+from django.contrib import messages
 from .models import *
-
+from .forms import *
 
 # Create your views here.
 def home(request):
@@ -35,6 +36,7 @@ def product_page(request):
         'colors':colors,
     }
     return render(request, 'store/product-page.html',context)
+
 
 
 def product_category_page(request, id):
@@ -73,7 +75,6 @@ def product_category_page(request, id):
 
 
 
-
 def product_details(request, id):
     product = Product.objects.get(id=id)
 
@@ -81,12 +82,6 @@ def product_details(request, id):
         'product':product
     }
     return render(request, 'store/product-accordion-full-width.html', context)
-
-
-
-
-
-
 
 
 
@@ -102,12 +97,56 @@ def blog_full_width(request):
 
 def blog_details(request, id):
     blogs = blog.objects.get(id=id)
+    comments = BlogComment.objects.filter(blog=blogs)
+    comments_count = BlogComment.objects.filter(blog=blogs).count()
+    user_form = BlogCommentForm() 
+    if request.method == 'POST':
+        user_form = BlogCommentForm(request.POST)
+        if user_form.is_valid():
+            obj = user_form.save(commit=False)
+            obj.blog = blogs
+            obj.save()
+            messages.success(request, 'Your message has been sent successfully!')
+        else:
+            messages.error(request, 'Somthing went Wrong!')
 
     context = {
-        'blogs':blogs
+        'blogs': blogs,
+        'user_form': user_form,
+        'comments': comments,
+        'comments_count': comments_count,
     }
     return render(request, 'store/blog-detail-full-width.html', context)
 
+
+
+def contact(request):
+    user_form = ContactUsForm() 
+
+    if request.method == 'POST':
+        user_form = ContactUsForm(request.POST)
+        if user_form.is_valid():
+            user_form.save() 
+            messages.success(request, 'Your message has been sent successfully!')
+        else:
+            messages.error(request, 'Somthing went Wrong!')
+
+    context = {
+        'user_form': user_form,
+    }
+    return render(request, 'store/contact-us.html', context)
+
+
+
+def about(request):
+    abouts = AboutUs.objects.all()
+    services = SupportSection.objects.all().last()
+
+    context = {
+        'abouts':abouts,
+        'services':services,
+    }
+    return render(request, 'store/about_us.html', context)
 
 
 
@@ -117,22 +156,54 @@ def faqs(request):
     context = {
         'faqs':faqs
     }
-    
     return render(request, 'store/faq.html', context)
 
 
 
+def terms_condition(request):
+    TermsConditions = TermsCondition.objects.all()
+    
+    context = {
+        'TermsConditions':TermsConditions
+    }
+    return render(request, 'store/terms-condition.html', context)
+
+
+
+def privacy_policy(request):
+    PrivacyPolicys = PrivacyPolicy.objects.all()
+    
+    context = {
+        'PrivacyPolicys':PrivacyPolicys
+    }
+    return render(request, 'store/privacy-policy.html', context)
 
 
 
 
 
-def about(request):
-    return render(request, 'store/about_us.html')
 
 
-def contact(request):
-    return render(request, 'store/contact-us.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def carts(request):
@@ -167,15 +238,11 @@ def track_order(request):
 
 
 
-def terms_condition(request):
-    return render(request, 'store/terms-condition.html')
 
 
 
 
 
-def privacy_policy(request):
-    return render(request, 'store/privacy-policy.html')
 
 
 

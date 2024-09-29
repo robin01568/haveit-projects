@@ -13,13 +13,13 @@
                                 <a href="javascript:void(0)" class="mx-[5px] text-center flex items-center justify-center text-[15px]">
                                     <i class="fi fi-rr-phone-call transition-all duration-[0.3s] ease-in-out text-[#777]"></i>
                                 </a>
-                                +8801 7********
+                                {{ con_web_info.contact1 }}
                             </li>
                             <li class="list-inline-item transition-all duration-[0.3s] ease-in-out flex text-[13px]">
                                 <a href="javascript:void(0)" class="mx-[5px] text-center flex items-center justify-center text-[15px]">
                                     <i class="fi fi-brands-whatsapp transition-all duration-[0.3s] ease-in-out text-[#777]"></i>
                                 </a>
-                                +8801 7********
+                                {{ con_web_info.contact2 }}
                             </li>
                         </ul>
                     </div>
@@ -121,7 +121,11 @@
                     <!-- Header Logo Start -->
                     <div class="self-center gi-header-logo max-[575px]:mb-[15px]">
                         <div class="header-logo text-left">
-                            <a href="{% url 'home' %}"><img src="{% static 'assets/img/logo/logo.png' %}" alt="Site Logo" class="w-[144px] max-[1199px]:w-[130px] max-[991px]:w-[120px] max-[767px]:w-[100px] "></a>
+                            <a href="{% url 'home' %}">
+                                {% if con_web_info.logo %}
+                                    <img src="{{ con_web_info.logo.url }}" alt="Site Logo" class="w-[144px] max-[1199px]:w-[130px] max-[991px]:w-[120px] max-[767px]:w-[100px] ">
+                                    {% endif %}
+                                </a>
                         </div>
                     </div>
                     <!-- Header Logo End -->

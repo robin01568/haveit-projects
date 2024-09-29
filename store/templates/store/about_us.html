@@ -30,34 +30,35 @@
     <!-- About section -->
     <section class="gi-about py-[40px] max-[767px]:py-[30px]">
         <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
-            <div class="flex flex-wrap">
-                <div class="min-[1200px]:w-[50%] min-[768px]:w-full px-[12px]">
-                    <div class="gi-about-img">
-                        <img src="{% static "assets/img/common/about.png" %}" class="v-img w-full rounded-[5px] max-[1199px]:max-w-[600px] max-[199px]:mb-[30px]" alt="about">
-                        <img src="{% static "assets/img/common/about-2.png" %}" class="h-img" alt="about">
-                        <img src="{% static "assets/img/common/about-3.png" %}" class="h-img" alt="about">
-                    </div>
-                </div>
-                <div class="min-[1200px]:w-[50%] min-[768px]:w-full px-[12px]">
-                    <div class="gi-about-detail h-full flex flex-col justify-center max-[1199px]:mt-[30px]">
-                        <div class="section-title pt-[0] flex flex-col mb-[20px]">
-                            <h2 class="mb-[15px] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]">Who We <span class="text-[#5caf90]">Are?</span></h2>
-                            <p class="m-0 text-[#777] text-[18px] font-medium uppercase max-[991px]:text-[17px] max-[767px]:text-[16px] max-[575px]:text-[15px]">We’re here to serve only the best products for you. Enriching your homes with the best
-                                essentials.</p>
+            {% for a in abouts %}
+                <div class="flex flex-wrap">
+                    <div class="min-[1200px]:w-[50%] min-[768px]:w-full px-[12px]">
+                        <div class="gi-about-img">
+                            {% if a.image %}
+                                <img src="{{ a.image.url }}" class="v-img w-full rounded-[5px] max-[1199px]:max-w-[600px] max-[199px]:mb-[30px]" alt="about">
+                            {% endif %}
+                            {% if a.img1 %}
+                                <img src="{{ a.img1.url }}" class="h-img" alt="about">
+                            {% endif %}
+                            {% if a.img2 %}
+                                <img src="{{ a.img2.url }}" class="h-img" alt="about">
+                            {% endif %}
                         </div>
-                        <p class="text-[#777] text-[14px] font-normal mb-[16px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        </p>
-                        <p class="text-[#777] text-[14px] font-normal mb-[16px]">Lorem Ipsum has survived not only five centuries, but also the leap into electronic
-                            typesetting, remaining essentially unchanged.</p>
-                        <p class="text-[#777] text-[14px] font-normal mb-[16px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book.</p>
+                    </div>
+                    <div class="min-[1200px]:w-[50%] min-[768px]:w-full px-[12px]">
+                        <div class="gi-about-detail h-full flex flex-col justify-center max-[1199px]:mt-[30px]">
+                            <div class="section-title pt-[0] flex flex-col mb-[20px]">
+                                <h2 class="mb-[15px] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]"><span class="text-[#5caf90]">{{ a.name }}</span></h2>
+                                <p class="m-0 text-[#777] text-[18px] font-medium uppercase max-[991px]:text-[17px] max-[767px]:text-[16px] max-[575px]:text-[15px]">{% if a.short_description is not none %}{{ a.short_description }}{% endif %}</p>
+                            </div>
+                            <p class="text-[#777] text-[14px] font-normal mb-[16px]">{% if a.description1 is not none %}{{ a.description1 }}{% endif %}</p>
+                            <p class="text-[#777] text-[14px] font-normal mb-[16px]">{% if a.description2 is not none %}{{ a.description2 }}{% endif %}</p>
+                            <p class="text-[#777] text-[14px] font-normal mb-[16px]">{% if a.description3 is not none %}{{ a.description3 }}{% endif %}</p>
+                            <p class="text-[#777] text-[14px] font-normal mb-[16px]">{% if a.description4 is not none %}{{ a.description4 }}{% endif %}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
     <!-- About section End -->
@@ -77,7 +78,7 @@
                         </div>
                         <div class="gi-service-desc">
                             <h3 class="mb-[10px] text-[18px] font-medium text-[#4b5966] tracking-[0.6px] font-Poppins leading-[1.2] max-[575px]:text-[16px]">Free Shipping</h3>
-                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">Free shipping on all US order or order above $200</p>
+                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.shipping }}</p>
                         </div>
                     </div>
                 </div>
@@ -88,7 +89,7 @@
                         </div>
                         <div class="gi-service-desc">
                             <h3 class="mb-[10px] text-[18px] font-medium text-[#4b5966] tracking-[0.6px] font-Poppins leading-[1.2] max-[575px]:text-[16px]">24X7 Support</h3>
-                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">Contact us 24 hours a day, 7 days a week</p>
+                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.support }}</p>
                         </div>
                     </div>
                 </div>
@@ -99,7 +100,7 @@
                         </div>
                         <div class="gi-service-desc">
                             <h3 class="mb-[10px] text-[18px] font-medium text-[#4b5966] tracking-[0.6px] font-Poppins leading-[1.2] max-[575px]:text-[16px]">30 Days Return</h3>
-                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">Simply return it within 30 days for an exchange</p>
+                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.returns }}</p>
                         </div>
                     </div>
                 </div>
@@ -110,7 +111,7 @@
                         </div>
                         <div class="gi-service-desc">
                             <h3 class="mb-[10px] text-[18px] font-medium text-[#4b5966] tracking-[0.6px] font-Poppins leading-[1.2] max-[575px]:text-[16px]">Payment Secure</h3>
-                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">Contact us 24 hours a day, 7 days a week</p>
+                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.payment }}</p>
                         </div>
                     </div>
                 </div>

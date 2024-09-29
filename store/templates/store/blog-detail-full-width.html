@@ -1,14 +1,11 @@
 {% extends 'store/base.html' %}
 {% load static %}
+{% load blog-comments-count %}
 
 {% block title %}{{ blogs.title }}{% endblock title %}
 
 {% block content %}
 
-
-
-
-  
 
     <!-- Blog section -->
     <section class="gi-blog py-[40px] max-[767px]:py-[30px]">
@@ -74,23 +71,23 @@
                         <div class="gi-blog-comments mt-[80px] max-[575px]:mt-[60px]">
                             <div class="gi-blog-cmt-preview">
                                 <div class="gi-blog-comment-wrapper">
-                                    <h4 class="gi-blog-dgi-title mb-[30px] py-[10px] px-[15px] text-[16px] font-semibold text-[#4b5966] bg-[#f8f8fb] rounded-[5px] leading-[1.2]">Comments : 05</h4>
+                                    <h4 class="gi-blog-dgi-title mb-[30px] py-[10px] px-[15px] text-[16px] font-semibold text-[#4b5966] bg-[#f8f8fb] rounded-[5px] leading-[1.2]">Comments : {{ blogs.id|blog_comments_count }} </h4>
+                                    {% for m in comments %}
                                     <div class="gi-single-comment-wrapper mb-[30px] flex flex-row">
                                         <div class="gi-blog-user-img w-[50px] mr-[15px]">
                                             <img src="{% static "assets/img/user/1.jpg" %}" alt="blog image" class="w-full rounded-[5px]">
                                         </div>
                                         <div class="gi-blog-comment-content w-[calc(100%-115px)]">
-                                            <h5 class="text-[#4b5966] text-[16px] font-semibold mb-[6px] leading-[1.2]">John Deo</h5>
-                                            <span class="text-[#999] text-[13px]">October 14, 2018 </span>
-                                            <p class="py-[5px] text-[#777] text-[14px] leading-[28px] font-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                eiusmod tempor incididunt ut labore et dolor magna aliqua. Ut enim
-                                                ad minim veniam. </p>
+                                            <h5 class="text-[#4b5966] text-[16px] font-semibold mb-[6px] leading-[1.2]">{{ m.name }}</h5>
+                                            <span class="text-[#999] text-[13px]">{{ m.date }}</span>
+                                            <p class="py-[5px] text-[#777] text-[14px] leading-[28px] font-light">{{ m.message }}</p>
                                             <div class="gi-blog-details-btn">
                                                 <a href="javascript:void(0)" class="text-[#5caf90] text-[13px]">Reply</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="gi-single-comment-wrapper mb-[30px] flex flex-row ml-[65px] max-[420px]:ml-[30px]">
+                                    {% endfor %}
+                                    {% comment %} <div class="gi-single-comment-wrapper mb-[30px] flex flex-row ml-[65px] max-[420px]:ml-[30px]">
                                         <div class="gi-blog-user-img w-[50px] mr-[15px]">
                                             <img src="{% static "assets/img/user/2.jpg" %}" alt="blog image" class="w-full rounded-[5px]">
                                         </div>
@@ -104,28 +101,29 @@
                                                 <a href="javascript:void(0)" class="text-[#5caf90] text-[13px]">Reply</a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> {% endcomment %}
                                 </div>
                             </div>
                             <div class="gi-blog-cmt-form">
                                 <div class="gi-blog-reply-wrapper mt-50">
                                     <h4 class="gi-blog-dgi-title mb-[30px] py-[10px] px-[15px] text-[16px] font-semibold text-[#4b5966] bg-[#f8f8fb] rounded-[5px] leading-[1.2]">Leave A Reply</h4>
-                                    <form class="gi-blog-form" action="#">
+                                    <form method="post" class="gi-blog-form" action="#">
+                                        {% csrf_token %}
                                         <div class="flex flex-wrap mx-[-12px]">
                                             <div class="min-[768px]:w-[50%] w-full px-[12px]">
                                                 <div class="gi-leave-form">
-                                                    <input type="text" placeholder="Full Name" class="w-full h-[45px] mb-[30px] pl-[20px] border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0]">
+                                                    <input type="text" name="name" placeholder="Full Name" class="w-full h-[45px] mb-[30px] pl-[20px] border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0]">
                                                 </div>
                                             </div>
                                             <div class="min-[768px]:w-[50%] w-full px-[12px]">
                                                 <div class="gi-leave-form">
-                                                    <input type="email" placeholder="Email Address" class="w-full h-[45px] mb-[30px] pl-[20px] border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0]">
+                                                    <input type="email" name="email" placeholder="Email Address" class="w-full h-[45px] mb-[30px] pl-[20px] border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] outline-[0]">
                                                 </div>
                                             </div>
                                             <div class="w-full px-[12px]">
                                                 <div class="gi-text-leave">
-                                                    <textarea placeholder="Message" class="w-full h-[200px] mb-[30px] py-[15px] px-[20px] border-[1px] border-solid border-[#eee] rounded-[5px] outline-[0]"></textarea>
-                                                    <a href="#" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out overflow-hidden text-center relative rounded-[5px] py-[10px] px-[15px] bg-[#5caf90] text-[#fff] border-[0] text-[14px] tracking-[0] font-medium inline-flex items-center hover:bg-[#4b5966] hover:text-[#fff]">Submit</a>
+                                                    <textarea placeholder="Message" name="message" class="w-full h-[200px] mb-[30px] py-[15px] px-[20px] border-[1px] border-solid border-[#eee] rounded-[5px] outline-[0]"></textarea>
+                                                    <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
