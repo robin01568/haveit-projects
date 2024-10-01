@@ -17,7 +17,6 @@ class WebsiteInfo(models.Model):
     def __str__(self):
         return f'Website Info Id:{self.id}'
 
-# https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d456.4274610640328!2d90.42616504843001!3d23.76806489560369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf537d1f2e09%3A0x8fe7a3faf331a140!2z4KaH4KaJ4Kao4Ka_4Kat4Ka-4Kaw4KeN4Ka4IOCmh-CmnyDgpofgpqjgprjgp43gpp_gpr_gpp_gpr_gpongpp8!5e0!3m2!1sbn!2sbd!4v1727514123372!5m2!1sbn!2sbd
 
 
 class Color(models.Model):
@@ -71,7 +70,60 @@ class Product(models.Model):
             return discount_percentage
         else:
             return 0
-        
+
+
+
+class OrderItem(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    ordered = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.quantity} of {self.product.title}'
+
+    def total(self):
+        if self.product.discount_price:
+            total = self.product.discount_price * self.quantity
+        else:
+            total = self.product.price * self.quantity
+        return total
+
+
+class Order(models.Model):
+    STATUS = (
+        ("Pending","Pending"),
+        ("Process","Process"),
+        ("On the Way","On the Way"),
+        ("Complete","Complete"),
+        ("Cancel","Cancel"),
+    )
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    items = models.ManyToManyField(OrderItem, related_name='orders')
+    amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
+    paid_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
+    due_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
+    status = models.CharField(max_length=20, choices=STATUS)
+    ordered = models.BooleanField(default=False)
+    ordered_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'Order #{self.id}'
+
+    def sub_total(self):
+        sub_total = 0
+        for i in self.items.all():
+            sub_total += i.total()
+        return sub_total
+
+    def shipping_charge(self):
+        shipping_charge = 80
+        return shipping_charge
+
+    def total_amount(self):
+        total = self.sub_total() + self.shipping_charge()
+        return total
         
 class Categorys(models.Model):
     name = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
@@ -169,7 +221,7 @@ class AboutUs(models.Model):
     
     
     
-    
+
     
     
     
@@ -180,7 +232,6 @@ class faq(models.Model):
     
     def __str__(self):
         return self.questions
-    
     
     
     

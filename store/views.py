@@ -84,6 +84,77 @@ def product_details(request, id):
     return render(request, 'store/product-accordion-full-width.html', context)
 
 
+def add_to_cart(request):
+    index = request.POST.get('index')
+    product_id = request.POST.get('product_id')
+    quantity = int(request.POST.get('quantity'))
+    product = Product.objects.get(id=product_id)
+    order_item, created = OrderItem.objects.get_or_create(
+        product=product,
+        user=request.user,
+        ordered=False,
+    )
+    if created:
+        order_item.quantity = quantity
+        order_item.save()
+        messages.success(request, "Added to cart")
+
+        order, created = Order.objects.get_or_create(
+            user=request.user,
+            ordered = False
+        )
+        if created:
+            order.items.add(order_item)
+            order.status = 'Pending'
+            order.save()
+        else:
+            order.items.add(order_item)
+            order.save()
+    else:
+        order_item.quantity += quantity
+        order_item.save()
+        messages.success(request, "Increment Quantity")
+    if index:
+        return redirect('home')
+    else:
+        return redirect('product_details', id=product_id)
+
+def remove_to_cart(request, id):
+    OrderItem.objects.get(id=id).delete()
+    messages.success(request, "Removed Successfully")
+    return redirect('carts')
+
+def carts(request):
+    order_items = OrderItem.objects.filter(ordered=False)
+    order = Order.objects.filter(user=request.user, ordered=False).last()
+    return render(request, 'store/cart.html',{'order':order,'order_items':order_items})
+
+def cart_quantity_increment(request):
+    order_item_id = request.POST.get('order_item_id')
+    order_item = OrderItem.objects.get(id=order_item_id)
+    if order_item.quantity <= order_item.product.stock:
+        order_item.quantity += 1
+        order_item.save()
+        messages.success(request, 'Order quantity Increase')
+    else:
+        messages.error(request, 'Out of stock')
+    return redirect('carts')
+
+def cart_quantity_decrement(request):
+    order_item_id = request.POST.get('order_item_id')
+    order_item = OrderItem.objects.get(id=order_item_id)
+    if order_item.quantity > 1:
+        order_item.quantity -= 1
+        order_item.save()
+        messages.success(request, 'Order quantity Decrease')
+    else:
+        messages.error(request, 'Quantity should be more than 1')
+    return redirect('carts')
+
+
+
+
+
 
 def blog_full_width(request):
     blogs = blog.objects.all()
@@ -201,13 +272,6 @@ def privacy_policy(request):
 
 
 
-
-
-
-
-
-def carts(request):
-    return render(request, 'store/cart.html')
 
 
 

@@ -41,53 +41,15 @@
                                 <h3 class="gi-sidebar-title text-[20px] font-semibold tracking-[0] mb-[0] leading-[1.2] relative text-[#4b5966] max-[1199px]:text-[18px]">Summary</h3>
                             </div>
                             <div class="gi-sb-block-content mb-[0] border-b-[0] mt-[15px]">
-                                <h4 class="gi-ship-title mb-[0] text-[17px] font-bold tracking-[0] leading-[1.2] border-b-[1px] border-solid border-[#eee] text-[#777] pb-[15px] relative flex items-center justify-between">Estimate Shipping</h4>
-                                <div class="gi-cart-form pt-[19px]">
-                                    <p class="text-[#777] text-[14px] mb-[10px] tracking-[0] leading-[28px] font-light">Enter your destination to get a shipping estimate</p>
-                                    <form action="#" method="post">
-                                        <span class="gi-cart-wrap">
-                                            <label class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">Country *</label>
-                                            <span class="gi-cart-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[28px] rounded-[5px]">
-                                                <select name="gi_cart_country" id="gi-cart-select-country" class="gi-cart-select">
-                                                    <option selected="" disabled="">United States</option>
-                                                    <option value="1">Country 1</option>
-                                                    <option value="2">Country 2</option>
-                                                    <option value="3">Country 3</option>
-                                                    <option value="4">Country 4</option>
-                                                    <option value="5">Country 5</option>
-                                                </select>
-                                            </span>
-                                        </span>
-                                        <span class="gi-cart-wrap">
-                                            <label class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">State/Province</label>
-                                            <span class="gi-cart-select-inner relative flex w-full h-[50px] border-[1px] border-solid border-[#eee] text-[14px] p-[0] mb-[28px] rounded-[5px]">
-                                                <select name="gi_cart_state" id="gi-cart-select-state" class="gi-cart-select">
-                                                    <option selected="" disabled="">Please Select a region, state</option>
-                                                    <option value="1">Region/State 1</option>
-                                                    <option value="2">Region/State 2</option>
-                                                    <option value="3">Region/State 3</option>
-                                                    <option value="4">Region/State 4</option>
-                                                    <option value="5">Region/State 5</option>
-                                                </select>
-                                            </span>
-                                        </span>
-                                        <span class="gi-cart-wrap">
-                                            <label class="mb-[9px] text-[#4b5966] text-[14px] font-medium tracking-[0] leading-[1] inline-block">Zip/Postal Code</label>
-                                            <input type="text" name="postalcode" placeholder="Zip/Postal Code" class="h-[50px] bg-transparent border-[1px] border-solid border-[#eee] text-[#4b5966] text-[14px] mb-[26px] px-[15px] w-full outline-[0] rounded-[5px]">
-                                        </span>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="gi-sb-block-content mb-[0] border-b-[0] mt-[15px]">
                                 <div class="gi-cart-summary-bottom">
                                     <div class="gi-cart-summary">
                                         <div class="flex justify-between items-center mb-[10px]">
                                             <span class="text-left text-[#4b5966] text-[14px] leading-[24px] tracking-[0]">Sub-Total</span>
-                                            <span class="text-right text-[#4b5966] text-[14px] leading-[24px] font-medium">$80.00</span>
+                                            <span class="text-right text-[#4b5966] text-[14px] leading-[24px] font-medium">${{ order.sub_total }}</span>
                                         </div>
                                         <div class="flex justify-between items-center mb-[10px]">
                                             <span class="text-left text-[#4b5966] text-[14px] leading-[24px] tracking-[0]">Delivery Charges</span>
-                                            <span class="text-right text-[#4b5966] text-[14px] leading-[24px] font-medium">$80.00</span>
+                                            <span class="text-right text-[#4b5966] text-[14px] leading-[24px] font-medium">${{ order.shipping_charge }}</span>
                                         </div>
                                         <div class="flex justify-between items-center mb-[10px]">
                                             <span class="text-left text-[#4b5966] text-[14px] leading-[24px] tracking-[0]">Coupan Discount</span>
@@ -101,7 +63,7 @@
                                         </div>
                                         <div class="gi-cart-summary-total border-t-[1px] border-solid border-[#eee] pt-[19px] mb-[0] mt-[16px] flex justify-between items-center">
                                             <span class="text-left text-[16px] font-medium text-[#4b5966] leading-[24px] tracking-[0]">Total Amount</span>
-                                            <span class="text-right text-[16px] font-medium text-[#4b5966] leading-[24px] tracking-[0]">$80.00</span>
+                                            <span class="text-right text-[16px] font-medium text-[#4b5966] leading-[24px] tracking-[0]">${{ order.total_amount }}</span>
                                         </div>
                                     </div>
 
@@ -115,7 +77,7 @@
                     <div class="gi-cart-content">
                         <div class="gi-cart-inner">
                             <div class="flex flex-wrap w-full">
-                                <form action="#" class="w-full">
+                                <div class="w-full">
                                     <div class="table-content cart-table-content">
                                         <table class="w-full bg-[#fff] ">
                                             <thead class="max-[767px]:border-[0] max-[767px]:h-[1px] max-[767px]:m-[-1px] max-[767px]:overflow-hidden max-[767px]:p-[0] max-[767px]:absolute max-[767px]:w-[1px]">
@@ -128,85 +90,48 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {% for i in order_items %}
                                                 <tr class="border-b-[1px] border-solid border-[#eee] max-[767px]:border-[1px] max-[767px]:block max-[767px]:mb-[15px]">
                                                     <td data-label="Product" class="gi-cart-pro-name w-[40%] text-[#4b5966] text-[16px] py-[15px] px-[14px] text-left max-[767px]:w-full max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <a href="product-left-sidebar.html" class="text-[#777] font-normal text-[14px] flex leading-[1.5] tracking-[0.6px] items-center">
-                                                            <img class="gi-cart-pro-img w-[60px] mr-[15px]" src="{% static "assets/img/product-images/1_1.jpg" %}" alt="">Crunchy
-                                                            Triangle Chips Snacks
+                                                        <a href="{% url 'product_details' i.product.id %}" class="text-[#777] font-normal text-[14px] flex leading-[1.5] tracking-[0.6px] items-center">
+                                                            {% if i.product.image %}
+                                                                <img class="gi-cart-pro-img w-[60px] mr-[15px]" src="{{ i.product.image.url }}" alt="">
+                                                            {% endif %}
+                                                            {{ i.product.title }}
                                                         </a>
                                                     </td>
                                                     <td data-label="Price" class="gi-cart-pro-price text-[#4b5966] font-medium text-[15px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <span class="amount tracking-[0.02rem]">$56.00</span>
+                                                        <span class="amount tracking-[0.02rem]">$ 
+                                                        {% if i.product.discount_price %}
+                                                            {{ i.product.discount_price }}
+                                                        {% else %}
+                                                            {{ i.product.price }}
+                                                        {% endif %}
+                                                        </span>
                                                     </td>
                                                     <td data-label="Quantity" class="gi-cart-pro-qty text-[#4b5966] text-[16px] py-[15px] px-[14px] text-center max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <div class="cart-qty-plus-minus border-[1px] border-solid border-[#eee] rounded-[5px] h-[35px] overflow-hidden p-[0] relative w-[84px] flex items-center justify-between my-[0] mx-auto max-[767px]:m-[0]">
-                                                            <input class="cart-plus-minus border-[0] text-[#4b5966] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[40px] outline-[0] leading-[38px] font-semibold" type="text" name="cartqtybutton" value="1">
+                                                        <div class=" border-[1px] border-solid border-[#eee] rounded-[5px] h-[35px] overflow-hidden p-[0] relative w-[84px] flex items-center justify-between my-[0] mx-auto max-[767px]:m-[0]">
+                                                            <input class=" border-[0] text-[#4b5966] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[40px] outline-[0] leading-[38px] font-semibold" type="text" name="cartqtybutton" readonly value="{{ i.quantity }}">
+                                                            <div class="ms_cart_qtybt">
+                                                                <form action="{% url 'cart_quantity_increment' %}" method="post">
+                                                                    {% csrf_token %}
+                                                                    <input type="hidden" name="order_item_id" id="" value="{{ i.id }}">
+                                                                    <button type="submit">+</button>
+                                                                </form>
+                                                                <form action="{% url 'cart_quantity_decrement' %}" method="post">
+                                                                    {% csrf_token %}
+                                                                    <input type="hidden" name="order_item_id" id="" value="{{ i.id }}">
+                                                                    <div class="dec ms_qtybtn"><button type="submit">-</button></div>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </td>
-                                                    <td data-label="Total" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">$56.00</td>
+                                                    <td data-label="Total" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">${{ i.total }}</td>
                                                     <td data-label="Remove" class="gi-cart-pro-remove text-[#4b5966] w-[90px] text-[16px] py-[15px] px-[14px] text-right max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <a href="#" class="text-[22px] my-[0] mx-auto"><i class="gicon gi-trash-o"></i></a>
+                                                        <a href="{% url 'remove_to_cart' i.id %}" class="text-[22px] my-[0] mx-auto"><i class="gicon gi-trash-o"></i></a>
                                                     </td>
                                                 </tr>
-                                                <tr class="border-b-[1px] border-solid border-[#eee] max-[767px]:border-[1px] max-[767px]:block max-[767px]:mb-[15px]">
-                                                    <td data-label="Product" class="gi-cart-pro-name w-[40%] text-[#4b5966] text-[16px] py-[15px] px-[14px] text-left max-[767px]:w-full max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <a href="product-left-sidebar.html" class="text-[#777] font-normal text-[14px] flex leading-[1.5] tracking-[0.6px] items-center">
-                                                            <img class="gi-cart-pro-img w-[60px] mr-[15px]" src="{% static "assets/img/product-images/2_1.jpg" %}" alt="">Dates
-                                                            Value Pack Pouch
-                                                        </a>
-                                                    </td>
-                                                    <td data-label="Price" class="gi-cart-pro-price text-[#4b5966] font-medium text-[15px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <span class="amount tracking-[0.02rem]">$75.00</span>
-                                                    </td>
-                                                    <td data-label="Quantity" class="gi-cart-pro-qty text-[#4b5966] text-[16px] py-[15px] px-[14px] text-center max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <div class="cart-qty-plus-minus border-[1px] border-solid border-[#eee] rounded-[5px] h-[35px] overflow-hidden p-[0] relative w-[84px] flex items-center justify-between my-[0] mx-auto max-[767px]:m-[0]">
-                                                            <input class="cart-plus-minus border-[0] text-[#4b5966] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[40px] outline-[0] leading-[38px] font-semibold" type="text" name="cartqtybutton" value="1">
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="Total" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">$75.00</td>
-                                                    <td data-label="Remove" class="gi-cart-pro-remove text-[#4b5966] w-[90px] text-[16px] py-[15px] px-[14px] text-right max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <a href="#" class="text-[22px] my-[0] mx-auto"><i class="gicon gi-trash-o"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="border-b-[1px] border-solid border-[#eee] max-[767px]:border-[1px] max-[767px]:block max-[767px]:mb-[15px]">
-                                                    <td data-label="Product" class="gi-cart-pro-name w-[40%] text-[#4b5966] text-[16px] py-[15px] px-[14px] text-left max-[767px]:w-full max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <a href="product-left-sidebar.html" class="text-[#777] font-normal text-[14px] flex leading-[1.5] tracking-[0.6px] items-center">
-                                                            <img class="gi-cart-pro-img w-[60px] mr-[15px]" src="{% static "assets/img/product-images/3_1.jpg" %}" alt="">Californian Almonds Value Pack
-                                                        </a>
-                                                    </td>
-                                                    <td data-label="Price" class="gi-cart-pro-price text-[#4b5966] font-medium text-[15px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <span class="amount tracking-[0.02rem]">$48.00</span>
-                                                    </td>
-                                                    <td data-label="Quantity" class="gi-cart-pro-qty text-[#4b5966] text-[16px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <div class="cart-qty-plus-minus border-[1px] border-solid border-[#eee] rounded-[5px] h-[35px] overflow-hidden p-[0] relative w-[84px] flex items-center justify-between my-[0] mx-auto max-[767px]:m-[0]">
-                                                            <input class="cart-plus-minus border-[0] text-[#4b5966] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[40px] outline-[0] leading-[38px] font-semibold" type="text" name="cartqtybutton" value="1">
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="Total" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">$48.00</td>
-                                                    <td data-label="Remove" class="gi-cart-pro-remove text-[#4b5966] w-[90px] text-[16px] py-[15px] px-[14px] text-right max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <a href="#" class="text-[22px] my-[0] mx-auto"><i class="gicon gi-trash-o"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr class="border-b-[1px] border-solid border-[#eee] max-[767px]:border-[1px] max-[767px]:block max-[767px]:mb-[15px]">
-                                                    <td data-label="Product" class="gi-cart-pro-name w-[40%] text-[#4b5966] text-[16px] py-[15px] px-[14px] text-left max-[767px]:w-full max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <a href="product-left-sidebar.html" class="text-[#777] font-normal text-[14px] flex leading-[1.5] tracking-[0.6px] items-center">
-                                                            <img class="gi-cart-pro-img w-[60px] mr-[15px]" src="{% static "assets/img/product-images/4_1.jpg" %}" alt="">
-                                                            Banana Chips Snacks & Spices
-                                                        </a>
-                                                    </td>
-                                                    <td data-label="Price" class="gi-cart-pro-price text-[#4b5966] font-medium text-[15px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <span class="amount tracking-[0.02rem]">$95.00</span>
-                                                    </td>
-                                                    <td data-label="Quantity" class="gi-cart-pro-qty text-[#4b5966] text-[16px] py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <div class="cart-qty-plus-minus border-[1px] border-solid border-[#eee] rounded-[5px] h-[35px] overflow-hidden p-[0] relative w-[84px] flex items-center justify-between my-[0] mx-auto max-[767px]:m-[0]">
-                                                            <input class="cart-plus-minus border-[0] text-[#4b5966] float-left text-[14px] h-auto m-[0] p-[0] text-center w-[40px] outline-[0] leading-[38px] font-semibold" type="text" name="cartqtybutton" value="1">
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="Total" class="gi-cart-pro-subtotal text-[#4b5966] text-[15px] font-medium py-[15px] px-[14px] text-left max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">$95.00</td>
-                                                    <td data-label="Remove" class="gi-cart-pro-remove text-[#4b5966] w-[90px] text-[16px] py-[15px] px-[14px] text-right max-[767px]:border-b-[1px] max-[767px]:border-solid max-[767px]:border-[#eee] max-[767px]:flex max-[767px]:justify-between max-[767px]:items-center max-[767px]:text-[14px] max-[767px]:py-[8px] max-[767px]:px-[10px]">
-                                                        <a href="#" class="text-[22px] my-[0] mx-auto"><i class="gicon gi-trash-o"></i></a>
-                                                    </td>
-                                                </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>
@@ -218,7 +143,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -230,7 +155,7 @@
     <!-- Cart section End -->
 
     <!-- New product section -->
-    <section class="gi-new-product py-[40px] max-[767px]:py-[30px]">
+    {% comment %} <section class="gi-new-product py-[40px] max-[767px]:py-[30px]">
         <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px] relative">
             <div class="flex flex-wrap w-full overflow-hidden mb-[-24px]">
                 <div class="gi-new-prod-section w-full">
@@ -597,7 +522,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> {% endcomment %}
     <!-- New product section End -->
 
 {% endblock content %}

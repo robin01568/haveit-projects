@@ -158,6 +158,7 @@
                                                 </span>
                                             </div>
                                         </div>
+
                                         <div class="gi-single-desc mb-[12px] text-[#777] text-[14px] tracking-[0] break-all leading-[26px] font-Poppins">{{ product.short_description }}</div>
 
                                         <div class="gi-pro-variation mb-[20px] pb-[5px]">
@@ -184,24 +185,36 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="gi-single-qty flex flex-wrap w-full m-[-5px]">
-                                            <div class="qty-plus-minus w-[120px] h-[40px] p-[10px] border-[1px] border-solid border-[#eee] overflow-hidden m-[5px] relative flex items-center justify-between rounded-[5px]">
-                                                <input class="qty-input" type="text" name="ms_qtybtn" value="1">
+                                        <form action="{% url 'add_to_cart' %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="gi-single-qty flex flex-wrap w-full m-[-5px]">
+                                                <div class="qty-plus-minus w-[120px] h-[40px] p-[10px] border-[1px] border-solid border-[#eee] overflow-hidden m-[5px] relative flex items-center justify-between rounded-[5px]">
+                                                    <input class="qty-input" type="text" name="quantity" value="1">
+                                                </div>
+                                                <input type="hidden" name="product_id" id="" value="{{ product.id }}">
+                                                {% if product.stock >= 1 %}
+                                                    <div class="gi-single-cart">
+                                                        <button type="submit" class="btn btn-primary gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center bg-[#4b5966] text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-[#5caf90] hover:text-[#fff]">Add To Cart</button>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="gi-single-cart">
+                                                        <button type="button" class="btn bg-red-900 gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-red-900 hover:text-[#fff]">OUT of STOCK</button>
+                                                    </div>
+                                                    
+                                                {% endif %}
+
+                                                <div class="gi-single-wishlist m-[5px]">
+                                                    <a class="gi-btn-group wishlist w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90]" title="Wishlist">
+                                                        <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#4b5966] leading-[0]"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="gi-single-quickview m-[5px]">
+                                                    <a href="javascript:void(0)" class="gi-btn-group quickview w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90] modal-toggle">
+                                                        <i class="fi-rr-eye transition-all duration-[0.3s] ease-in-out text-[#4b5966] leading-[0]"></i>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class="gi-single-cart">
-                                                <button type="button" class="btn btn-primary gi-btn-1 flex h-[40px] leading-[50px] text-center text-[14px] m-[5px] py-[10px] px-[15px] uppercase justify-center bg-[#4b5966] text-[#fff] transition-all duration-[0.3s] ease-in-out relative rounded-[5px] items-center min-w-[160px] font-semibold tracking-[0.02rem] border-[0] hover:bg-[#5caf90] hover:text-[#fff]">Add To Cart</button>
-                                            </div>
-                                            <div class="gi-single-wishlist m-[5px]">
-                                                <a class="gi-btn-group wishlist w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90]" title="Wishlist">
-                                                    <i class="fi-rr-heart transition-all duration-[0.3s] ease-in-out text-[#4b5966] leading-[0]"></i>
-                                                </a>
-                                            </div>
-                                            <div class="gi-single-quickview m-[5px]">
-                                                <a href="javascript:void(0)" class="gi-btn-group quickview w-[40px] h-[40px] flex items-center justify-center transition-all duration-[0.3s] ease delay-[0s] text-[#17181c] bg-[#fff] border-[1px] border-solid border-[#eee] rounded-[5px] hover:text-[#fff] hover:bg-[#5caf90] hover:border-[#5caf90] modal-toggle">
-                                                    <i class="fi-rr-eye transition-all duration-[0.3s] ease-in-out text-[#4b5966] leading-[0]"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
