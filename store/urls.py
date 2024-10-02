@@ -9,6 +9,13 @@ urlpatterns = [
 
     path('add-to-cart/', add_to_cart, name="add_to_cart"),
     path('remove-to-cart/<int:id>/', remove_to_cart, name="remove_to_cart"),
+    path('carts/', carts, name="carts"),
+    path('cart-quantity-increment/', cart_quantity_increment, name="cart_quantity_increment"),
+    path('cart-quantity-decrement/', cart_quantity_decrement, name="cart_quantity_decrement"),
+
+    path('wishlist/', wishlist, name="wishlist"),
+    path('add-to-wishlist/', add_to_wishlist, name="add_to_wishlist"),
+    path('remove-to-wishlist/<int:id>/', remove_to_wishlist, name="remove_to_wishlist"),
 
     path('blog-full-width/', blog_full_width, name="blog_full_width"),
     path('blog-details/<int:id>', blog_details, name='blog_details'),
@@ -18,15 +25,11 @@ urlpatterns = [
     path('terms-condition/', terms_condition, name="terms_condition"),
     path('privacy-policy/', privacy_policy, name="privacy_policy"),
 
-    path('carts/', carts, name="carts"),
-    path('cart-quantity-increment/', cart_quantity_increment, name="cart_quantity_increment"),
-    path('cart-quantity-decrement/', cart_quantity_decrement, name="cart_quantity_decrement"),
 
 
-    path('checkout/', checkout, name="checkout"),
+    
     path('compare/', compare, name="compare"),
     path('track_order/', track_order, name="track_order"),
-    path('wishlist/', wishlist, name="wishlist"),
     path('blog_left_sidebar/', blog_left_sidebar, name="blog_left_sidebar"),
     path('blog_right_sidebar/', blog_right_sidebar, name="blog_right_sidebar"),
     path('blog_detail_left_sidebar/', blog_detail_left_sidebar, name="blog_detail_left_sidebar"),

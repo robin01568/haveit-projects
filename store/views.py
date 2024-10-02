@@ -1,7 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
+
 
 # Create your views here.
 def home(request):
@@ -84,6 +86,7 @@ def product_details(request, id):
     return render(request, 'store/product-accordion-full-width.html', context)
 
 
+@login_required
 def add_to_cart(request):
     index = request.POST.get('index')
     product_id = request.POST.get('product_id')
@@ -119,16 +122,20 @@ def add_to_cart(request):
     else:
         return redirect('product_details', id=product_id)
 
+@login_required
 def remove_to_cart(request, id):
     OrderItem.objects.get(id=id).delete()
     messages.success(request, "Removed Successfully")
     return redirect('carts')
 
+@login_required
 def carts(request):
-    order_items = OrderItem.objects.filter(ordered=False)
+    order_items = OrderItem.objects.filter(user=request.user, ordered=False)
     order = Order.objects.filter(user=request.user, ordered=False).last()
-    return render(request, 'store/cart.html',{'order':order,'order_items':order_items})
+    products = Product.objects.filter(is_show=True)
+    return render(request, 'store/cart.html',{'order':order,'order_items':order_items,'products':products})
 
+@login_required
 def cart_quantity_increment(request):
     order_item_id = request.POST.get('order_item_id')
     order_item = OrderItem.objects.get(id=order_item_id)
@@ -140,6 +147,7 @@ def cart_quantity_increment(request):
         messages.error(request, 'Out of stock')
     return redirect('carts')
 
+@login_required
 def cart_quantity_decrement(request):
     order_item_id = request.POST.get('order_item_id')
     order_item = OrderItem.objects.get(id=order_item_id)
@@ -152,9 +160,33 @@ def cart_quantity_decrement(request):
     return redirect('carts')
 
 
+@login_required
+def wishlist(request):
+    wish_list = Wishlist.objects.filter(user=request.user)
+    return render(request, 'store/wishlist.html',{'wish_list':wish_list})
 
 
+@login_required
+def add_to_wishlist(request):
+    product_id = request.GET.get('product_id')
+    home = request.GET.get('home', None)
+    product = Product.objects.get(id=product_id)
+    wishlist, created = Wishlist.objects.get_or_create(product=product, user=request.user)
+    if created:
+        messages.success(request, 'Product added to wishlist')
+    else:
+        messages.warning(request, 'Product already in wishlist')
+    if home:
+        return redirect('home')
+    else:
+        return redirect('product_details', id=product.id)
 
+
+@login_required
+def remove_to_wishlist(request, id):
+    Wishlist.objects.get(id=id).delete()
+    messages.success(request, "Removed Successfully")
+    return redirect('wishlist')
 
 def blog_full_width(request):
     blogs = blog.objects.all()
@@ -276,8 +308,7 @@ def privacy_policy(request):
 
 
 
-def checkout(request):
-    return render(request, 'store/checkout.html')
+
 
 
 
@@ -311,8 +342,6 @@ def track_order(request):
 
 
 
-def wishlist(request):
-    return render(request, 'store/wishlist.html')
 
 
 

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from .forms import *
@@ -34,15 +35,18 @@ def login_view(request):
     return render(request, 'userAccount/login.html')
 
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('login')
 
 
+@login_required
 def profile_dashboard(request):
     return render(request, 'userAccount/profile/dashboard.html')
 
 
+@login_required
 def profile(request):
     user = CustomUser.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=user)
@@ -67,6 +71,7 @@ def profile(request):
     return render(request, 'userAccount/profile/profile.html',context)
 
 
+@login_required
 def change_password(request):
     if request.method == "POST":
         form = PasswordChangeForm(user=request.user, data=request.POST)

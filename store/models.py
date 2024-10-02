@@ -71,6 +71,23 @@ class Product(models.Model):
         else:
             return 0
 
+class Wishlist(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+
+class Coupon(models.Model):
+    code = models.CharField(max_length=20, unique=True)
+    discount_percentage = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    start_date = models.DateTimeField(auto_now_add=True)
+    end_date = models.DateTimeField()
+    quntity = models.IntegerField(default=0)
+    used = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.code
 
 
 class OrderItem(models.Model):
@@ -103,6 +120,7 @@ class Order(models.Model):
     amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
     paid_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
     due_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
+    Coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE, blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS)
     ordered = models.BooleanField(default=False)
     ordered_date = models.DateTimeField(auto_now_add=True)
