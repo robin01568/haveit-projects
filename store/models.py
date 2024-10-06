@@ -1,6 +1,7 @@
 from django.db import models
 from UserAccount.models import CustomUser
 from phone_field import PhoneField
+from django.utils import timezone
 
 # Create your models here.
 class WebsiteInfo(models.Model):
@@ -77,10 +78,11 @@ class Wishlist(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
 
+
 class Coupon(models.Model):
     code = models.CharField(max_length=20, unique=True)
     discount_percentage = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    start_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField(default=timezone.now)
     end_date = models.DateTimeField()
     quntity = models.IntegerField(default=0)
     used = models.IntegerField(default=0)
@@ -115,12 +117,20 @@ class Order(models.Model):
         ("Complete","Complete"),
         ("Cancel","Cancel"),
     )
+    PAYMENT_TYPE = (
+        ("Cash On Delivery","Cash On Delivery"),
+        ("Bkash","Bkash"),
+        ("Nagad","Nagad"),
+        ("Rocket","Rocket"),
+        ("Upay","Upay"),
+    )
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem, related_name='orders')
     amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
     paid_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
     due_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0)
-    Coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE, blank=True, null=True)
+    payment_type = models.CharField(max_length=30, choices=PAYMENT_TYPE, blank=True, null=True)
+    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE, blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS)
     ordered = models.BooleanField(default=False)
     ordered_date = models.DateTimeField(auto_now_add=True)
@@ -133,16 +143,30 @@ class Order(models.Model):
         sub_total = 0
         for i in self.items.all():
             sub_total += i.total()
-        return sub_total
+        return sub_total 
 
-    def shipping_charge(self):
-        shipping_charge = 80
+    def shipping_charge(self, value="Inside Dhaka"):
+        if value=="Inside Dhaka":
+            shipping_charge = 80
+        else:
+            shipping_charge = 160
         return shipping_charge
 
+    def coupon_total(self):
+        if self.coupon:
+            return self.coupon.discount_percentage * self.sub_total() / 100
+        else:
+            return 0
+
     def total_amount(self):
-        total = self.sub_total() + self.shipping_charge()
+        total = (self.sub_total() + self.shipping_charge()) - self.coupon_total()
         return total
+    
+    def get_due_amount(self):
+        return self.amount - self.paid_amount
         
+
+
 class Categorys(models.Model):
     name = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     icon = models.ImageField(upload_to='category/category-icon-image', blank=True, null=True)
