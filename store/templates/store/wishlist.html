@@ -35,15 +35,27 @@
                                 <tbody class="wish-empt border-t-[3px] border-solid border-[#eee] border-solid border-[#dee2e6]">
                                     {% for i in wish_list %}
                                     <tr class="pro-gl-content">
-                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">225</span></td>
-                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><img class="prod-img h-[58px] w-[58px]" src="{% static "assets/img/product-images/1_1.jpg" %}" alt="product image"></td>
-                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">Californian Almonds Value 250g + 50g Pack</span></td>
-                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">16 Jul 2021</span></td>
-                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">$65</span></td>
-                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">Available</span></td>
+                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">{{i.id}}</span></td>
+                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><img class="prod-img h-[58px] w-[58px]" src="{{i.product.image.url}}" alt="product image"></td>
+                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]"><a href="{% url 'product_details' i.product.id %}">{{i.product.title}}</a></span></td>
+                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">{{i.created_at}}</span></td>
+                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#777] tracking-[0.02rem]">
+                                            {% if i.product.discount_price %}
+                                            ${{i.product.discount_price}}
+                                            {% else %}
+                                            ${{i.product.price}}
+                                            {% endif %}
+                                            </span></td>
+                                        <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]"><span class="max-[767px]:text-[14px] py-[14px] flex text-[#5caf90] tracking-[0.02rem]">
+                                            {% if i.product.stock > 0 %}
+                                            Available
+                                            {% else %}
+                                            Out of Stock
+                                            {% endif %}
+                                            </span></td>
                                         <td class="p-[0.5rem] border-b-[1px] border-solid border-[#dee2e6]">
                                             <span class="tbl-btn py-[14px] flex text-[#777]">
-                                                <a class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="javascript:void(0)" title="Add To Cart">
+                                                <a class="gi-btn-2 add-to-cart w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]" href="" title="Add To Cart">
                                                     <i class="fi-rr-shopping-basket leading-[10px]"></i>
                                                 </a>
                                                 <a class="gi-btn-1 gi-remove-wish mx-[3px] text-[20px] font-normal btn w-[30px] h-[30px] inline-flex items-center justify-center transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#4b5966] text-[#fff] text-center rounded-[5px] hover:bg-[#5caf90] hover:text-[#fff]" href="{% url 'remove_to_wishlist' i.id %}" title="Remove From List">

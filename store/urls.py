@@ -45,4 +45,9 @@ urlpatterns = [
     path('shop_banner_left_sidebar_col_4/', shop_banner_left_sidebar_col_4, name="shop_banner_left_sidebar_col_4"),
     path('shop_full_width_col_6/', shop_full_width_col_6, name="shop_full_width_col_6"),
     path('shop_list_right_sidebar/', shop_list_right_sidebar, name="shop_list_right_sidebar"),
+
+
+
+    path('load-districts/', load_districts, name="load_districts"),
+    path('load-sub-districts/', load_sub_districts, name="load_sub_districts"),
 ]

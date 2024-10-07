@@ -6,7 +6,7 @@
     <!-- left sight -->
     {% include 'userAccount/profile/include/left-side.html' %}
 
-    <!-- right sight -->
+    <!-- right sight Start -->
     <div class="w-full md:w-3/4 border border-slate-100 rounded shadow-xl">
         <div class="p-4">
             <div class="">
@@ -14,18 +14,18 @@
                 <div class="flex flex-wrap w-full"></div>
                 <div class="gi-register-wrapper max-w-[934px] my-[0] mx-auto px-[12px]">
                     <div
-                        class="gi-register-container border-[1px] border-solid border-[#eee] p-[30px] text-left bg-[#fff] rounded-[5px] max-[575px]:p-[15px]">
-                        <div class="gi-register-form">
-                            <form action="" method="post" enctype="multipart/form-data"
-                                class="flex flex-row flex-wrap mx-[-15px]">
-                                {% csrf_token %}
-                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
-                                    <label
-                                        class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Full
-                                        Name*</label>
-                                    <input type="text" name="full_name" placeholder="Enter your full name"
-                                        value="{{ user_form.instance.full_name }}"
-                                        class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
+                    class="gi-register-container border-[1px] border-solid border-[#eee] p-[30px] text-left bg-[#fff] rounded-[5px] max-[575px]:p-[15px]">
+                    <div class="gi-register-form">
+                        <form action="" method="post" enctype="multipart/form-data"
+                        class="flex flex-row flex-wrap mx-[-15px]">
+                        {% csrf_token %}
+                        <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                            <label
+                            class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Full
+                            Name*</label>
+                            <input type="text" name="full_name" placeholder="Enter your full name"
+                            value="{{ user_form.instance.full_name }}"
+                            class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
                                         required>
                                 </span>
                                 <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
@@ -51,6 +51,37 @@
                                         value="{{ request.user.profile.date_of_birth }}"
                                         class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
                                 </span>
+
+
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Division</label>
+                                    <select name="division" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                        <option >Select Division</option>
+                                        {% for d in divisions %}
+                                            <option value="{{ d.id }}" {% if request.user.profile.gender == d.id %}selected{% endif %}>{{ d.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">District</label>
+                                    <select name="district" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                        <option >Select District</option>
+                                        {% for d in districts %}
+                                            <option value="{{ d.id }}" {% if request.user.profile.gender == d.id %}selected{% endif %}>{{ d.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </span>
+                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                                    <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Sub District</label>
+                                    <select name="sub_district" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                        <option >Select Sub District</option>
+                                        {% for d in sub_districts %}
+                                            <option value="{{ d.id }}" {% if request.user.profile.gender == d.id %}selected{% endif %}>{{ d.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </span>
+
+
                                 <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                     <label
                                         class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Address</label>
@@ -74,7 +105,7 @@
                                         Image</label>
                                     <input type="file" name="image"
                                         class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
-                                </span>
+                                    </span>
 
                                 <span
                                     class="gi-register-wrap gi-register-btn flex flex-row justify-between items-center w-full px-[15px] max-[767px]:flex-col ">
@@ -91,18 +122,18 @@
                 <div class="flex flex-wrap w-full"></div>
                 <div class="gi-register-wrapper max-w-[934px] my-[0] mx-auto px-[12px]">
                     <div
-                        class="gi-register-container border-[1px] border-solid border-[#eee] p-[30px] text-left bg-[#fff] rounded-[5px] max-[575px]:p-[15px]">
-                        <div class="gi-register-form">
+                    class="gi-register-container border-[1px] border-solid border-[#eee] p-[30px] text-left bg-[#fff] rounded-[5px] max-[575px]:p-[15px]">
+                    <div class="gi-register-form">
                             <form action="{% url 'change_password' %}" method="post" enctype="multipart/form-data"
-                                class="flex flex-row flex-wrap mx-[-15px]">
-                                {% csrf_token %}
-                                <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
+                            class="flex flex-row flex-wrap mx-[-15px]">
+                            {% csrf_token %}
+                            <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                     <label
-                                        class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
+                                    class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
                                     Current Password*</label>
                                     <input type="password" name="old_password" placeholder="Enter Current Password"
-                                        class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
-                                        required>
+                                    class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]"
+                                    required>
                                 </span>
                                 <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                     <label
@@ -113,12 +144,12 @@
                                 </span>
                                 <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                     <label
-                                        class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
+                                    class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">
                                         Confirm Password*</label>
                                     <input type="password" name="new_password2" placeholder="Enter Confirm Password"
                                         class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
-                                </span>
-
+                                    </span>
+                                    
                                 <span
                                     class="gi-register-wrap gi-register-btn flex flex-row justify-between items-center w-full px-[15px] max-[767px]:flex-col ">
                                     <button type="submit"
@@ -129,8 +160,14 @@
                     </div>
                 </div>
             </div>
-
-            </div>
+            
         </div>
     </div>
+    <!-- right sight End -->
+
+
+
+
+
+</div>
 {% endblock content %}

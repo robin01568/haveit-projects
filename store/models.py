@@ -2,6 +2,7 @@ from django.db import models
 from UserAccount.models import CustomUser
 from phone_field import PhoneField
 from django.utils import timezone
+from django.conf import settings
 
 # Create your models here.
 class WebsiteInfo(models.Model):
@@ -17,7 +18,7 @@ class WebsiteInfo(models.Model):
 
     def __str__(self):
         return f'Website Info Id:{self.id}'
-
+    
 
 
 class Color(models.Model):

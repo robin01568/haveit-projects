@@ -1,4 +1,4 @@
-{% load static %}
+    {% load static %}
 <!-- Header start  -->
 <header class="gi-header bg-[#fff] z-[14] max-[991px]:z-[16] relative">
     <!-- Header Top Start -->
@@ -368,19 +368,30 @@
                                                 <li class="flex">
                                                     <span class="bg"></span>
                                                     <ul class="mega-block w-[calc(25%-30px)] mr-[30px] py-[15px] block">
-                                                        <li class="menu_title">
-                                                            <a href="{% url "shop_full_width" %}" class="text-[#5caf90] text-[15px] capitalize leading-[30px] font-medium block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Classic</a>
-                                                        </li>
-                                                        <li><a href="shop-left-sidebar-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Left sidebar 3 column</a></li>
-                                                        <li><a href="shop-left-sidebar-col-4.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Left sidebar 4 column</a></li>
-                                                        <li><a href="shop-right-sidebar-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Right sidebar 3 column</a></li>
-                                                        <li><a href="shop-right-sidebar-col-4.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Right sidebar 4 column</a></li>
-                                                        <li><a href="{% url "shop_full_width" %}" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Full width 4 column @</a></li>
+                                                        {% for c in con_category_10_1 %}
+                                                            <li><a href="{% url 'product_category_page' c.id %}" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">{{ c.name }}</a></li>
+                                                        {% endfor %}
                                                     </ul>
                                                     <ul class="mega-block w-[calc(25%-30px)] mr-[30px] py-[15px] block">
+                                                        {% for c in con_category_10_2 %}
+                                                            <li><a href="{% url 'product_category_page' c.id %}" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">{{ c.name }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    <ul class="mega-block w-[calc(25%-30px)] mr-[30px] py-[15px] block">
+                                                        {% for c in con_category_10_3 %}
+                                                            <li><a href="{% url 'product_category_page' c.id %}" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">{{ c.name }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    <ul class="mega-block w-[calc(25%-30px)] mr-[30px] py-[15px] block">
+                                                        {% for c in con_category_10_4 %}
+                                                            <li><a href="{% url 'product_category_page' c.id %}" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">{{ c.name }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    {% comment %} <ul class="mega-block w-[calc(25%-30px)] mr-[30px] py-[15px] block">
                                                         <li class="menu_title">
                                                             <a href="{% url "shop_banner_left_sidebar_col_4" %}" class="text-[#5caf90] text-[15px] capitalize leading-[30px] font-medium block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Banner</a>
                                                         </li>
+
                                                         <li><a href="{% url "shop_banner_left_sidebar_col_3" %}" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">left sidebar 3 column #offers</a></li>
                                                         <li><a href="{% url "shop_banner_left_sidebar_col_4" %}" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">left sidebar 4 column @#@</a></li>
                                                         <li><a href="shop-banner-right-sidebar-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">right sidebar  column</a></li>
@@ -391,6 +402,7 @@
                                                         <li class="menu_title">
                                                             <a href="{% url "shop_full_width_col_6" %}" class="text-[#5caf90] text-[15px] capitalize leading-[30px] font-medium block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">Columns</a>
                                                         </li>
+
                                                         <li><a href="shop-full-width-col-3.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">3 Columns full width</a></li>
                                                         <li><a href="shop-full-width-col-4.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">4 Columns full width</a></li>
                                                         <li><a href="shop-full-width-col-5.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">5 Columns full width</a></li>
@@ -401,12 +413,13 @@
                                                         <li class="menu_title">
                                                             <a href="{% url "shop_list_right_sidebar" %}" class="text-[#5caf90] text-[15px] capitalize leading-[30px] font-medium block border-b-[1px] border-solid border-[#eee] mb-[10px] pb-[5px] h-auto">List</a>
                                                         </li>
+
                                                         <li><a href="shop-list-left-sidebar.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Shop left sidebar</a></li>
                                                         <li><a href="{% url "shop_list_right_sidebar" %}" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Shop right sidebar @</a></li>
                                                         <li><a href="shop-list-banner-left-sidebar.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Banner left sidebar</a></li>
                                                         <li><a href="shop-list-banner-right-sidebar.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Banner right sidebar</a></li>
                                                         <li><a href="shop-list-full-col-2.html" class="text-[#777] capitalize leading-[30px] font-normal text-[13px] block py-[5px] border-0 h-auto hover:text-[#5caf90]">Full width 2 columns</a></li>
-                                                    </ul>
+                                                    </ul> {% endcomment %}
                                                 </li>
                                             </ul>
                                         </li>

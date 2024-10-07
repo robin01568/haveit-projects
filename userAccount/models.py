@@ -3,8 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.contrib.auth import get_user_model
-
+from core.models import Division, District, SubDistrict
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -49,6 +48,7 @@ class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="sellerpicture", default='avatar.png')
     date_of_birth = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    # division = models.ForeignKey(Division, on_delete=models.CASCADE, related_name='profiles', blank=True, null=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     GENDER_CHOICES = (
         ('Male', 'Male'),
@@ -61,6 +61,14 @@ class Profile(models.Model):
         null=True,
         blank=True,
     )
+
+    def img_size(self):
+        img = self.image
+        pass
+
+    def save(self, *args, **kwargs):
+        pass
+
     def __str__(self):
         return self.user.email or self.user.phone 
 

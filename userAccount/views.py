@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from .forms import *
+from Store.models import Order, OrderItem
+from core.models import District, Division, SubDistrict
 
 # Create your views here.
 def register(request):
@@ -45,12 +47,12 @@ def logout_view(request):
 def profile_dashboard(request):
     return render(request, 'userAccount/profile/dashboard.html')
 
-
+from django.conf import settings
 @login_required
 def profile(request):
     user = CustomUser.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=user)
-    
+    print('settings.AUTH_USER_MODEL ==============',settings.AUTH_USER_MODEL)
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=user)
         profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
@@ -64,9 +66,16 @@ def profile(request):
 
     user_form = UserUpdateForm(instance=user)
     profile_form = ProfileUpdateForm(instance=profile)
+
+    divisions = Division.objects.all().order_by('name')
+    districts = District.objects.all().order_by('name')
+    sub_districts = SubDistrict.objects.all().order_by('name')
     context = {
         'user_form':user_form,
-        'profile_form':profile_form
+        'profile_form':profile_form,
+        'divisions':divisions,
+        'districts':districts,
+        'sub_districts':sub_districts,
     }
     return render(request, 'userAccount/profile/profile.html',context)
 
@@ -83,3 +92,19 @@ def change_password(request):
         else:
             messages.error(request, 'Please correct the errors below.')
             return redirect('profile')
+        
+@login_required
+def order_historty(request):
+    order =Order.objects.filter(ordered=True)
+
+    context = {
+        'order':order,
+
+    }
+    return render(request, 'userAccount/profile/order-history.html', context)
+
+@login_required
+def remove_order(request, id):
+    Order.objects.get(id=id).delete()
+    messages.success(request, "Removed Successfully")
+    return redirect('order_historty')
