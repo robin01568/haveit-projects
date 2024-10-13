@@ -55,29 +55,33 @@
 
                                 <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                     <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Division</label>
-                                    <select name="division" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                    <select name="division" id="division" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
                                         <option >Select Division</option>
                                         {% for d in divisions %}
-                                            <option value="{{ d.id }}" {% if request.user.profile.gender == d.id %}selected{% endif %}>{{ d.name }}</option>
+                                            <option value="{{ d.id }}" {% if request.user.profile.division.id == d.id %}selected{% endif %}>{{ d.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </span>
                                 <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                     <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">District</label>
-                                    <select name="district" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                    <select name="district" id="district" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
                                         <option >Select District</option>
-                                        {% for d in districts %}
-                                            <option value="{{ d.id }}" {% if request.user.profile.gender == d.id %}selected{% endif %}>{{ d.name }}</option>
-                                        {% endfor %}
+                                        {% if request.user.profile.district %}
+                                            {% for d in districts %}
+                                                <option value="{{ d.id }}" {% if request.user.profile.district.id == d.id %}selected{% endif %}>{{ d.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
                                     </select>
                                 </span>
                                 <span class="gi-register-wrap gi-register-half w-[50%] px-[15px]">
                                     <label class="inline-block mb-[9px] text-[#4b5966] text-[15px] font-medium tracking-[0] leading-[1]">Sub District</label>
-                                    <select name="sub_district" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
+                                    <select name="sub_district" id="sub_district" class="w-full bg-transparent border-[1px] border-solid border-[#eee] text-[#777] text-[14px] mb-[26px] px-[15px] outline-[0] rounded-[5px] h-[50px]">
                                         <option >Select Sub District</option>
-                                        {% for d in sub_districts %}
-                                            <option value="{{ d.id }}" {% if request.user.profile.gender == d.id %}selected{% endif %}>{{ d.name }}</option>
-                                        {% endfor %}
+                                        {% if request.user.profile.sub_district %}
+                                            {% for d in sub_districts %}
+                                                <option value="{{ d.id }}" {% if request.user.profile.sub_district.id == d.id %}selected{% endif %}>{{ d.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
                                     </select>
                                 </span>
 
@@ -160,14 +164,49 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
     <!-- right sight End -->
-
-
-
-
-
 </div>
+<script>
+    const division = document.getElementById('division');
+    const district = document.getElementById('district');
+    const subDistrict = document.getElementById('sub_district');
+
+    // Load districts when division changes
+    division.addEventListener('change', function() {
+        const divisionId = this.value;
+        fetch(`/load-districts/?division_id=${divisionId}`)
+            .then(response => response.text())
+            .then(data => {
+                district.innerHTML = data; // Populate district dropdown
+                subDistrict.innerHTML = '<option>Select Sub District</option>'; // Reset sub-district
+                // Trigger change on district to load sub-districts
+                district.dispatchEvent(new Event('change'));
+            });
+    });
+    // Load sub-districts when district changes
+    district.addEventListener('change', function() {
+        const districtId = this.value;
+        fetch(`/load-sub-districts/?district_id=${districtId}`)
+            .then(response => response.text())
+            .then(data => {
+                subDistrict.innerHTML = data; // Populate sub-district dropdown
+            });
+    });
+    // Function to trigger initial loading of dropdowns
+    function initializeDropdowns() {
+        const initialDivisionId = division.value;
+        if (initialDivisionId) {
+            division.dispatchEvent(new Event('change')); // Load districts based on initial value
+        }
+        const initialDistrictId = district.value;
+        if (initialDistrictId) {
+            district.dispatchEvent(new Event('change')); // Load sub-districts based on initial value
+        }
+    }
+
+    // Call the initialize function on page load
+    document.addEventListener('DOMContentLoaded', initializeDropdowns);
+</script>
 {% endblock content %}

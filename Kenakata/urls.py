@@ -24,6 +24,9 @@ urlpatterns = [
     path('', include('Store.urls')),
     path('', include('UserAccount.urls')),
     path('', include('PaymentApp.urls')),
+    path('', include('core.urls')),
+    path('', include('dashboard.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

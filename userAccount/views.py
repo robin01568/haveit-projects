@@ -52,7 +52,6 @@ from django.conf import settings
 def profile(request):
     user = CustomUser.objects.get(id=request.user.id)
     profile = Profile.objects.get(user=user)
-    print('settings.AUTH_USER_MODEL ==============',settings.AUTH_USER_MODEL)
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=user)
         profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)

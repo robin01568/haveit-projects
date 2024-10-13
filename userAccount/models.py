@@ -48,7 +48,12 @@ class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="sellerpicture", default='avatar.png')
     date_of_birth = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
-    # division = models.ForeignKey(Division, on_delete=models.CASCADE, related_name='profiles', blank=True, null=True)
+    division = models.ForeignKey(Division, on_delete=models.CASCADE, related_name='profiles', blank=True, null=True)
+    district = models.ForeignKey(District, on_delete=models.CASCADE, related_name='profiles', blank=True, null=True)
+    sub_district = models.ForeignKey(SubDistrict, on_delete=models.CASCADE, related_name='profiles', blank=True, null=True)
+    # division = models.CharField(max_length=255, blank=True, null=True)
+    # district = models.CharField(max_length=255, blank=True, null=True)
+    # sub_district = models.CharField(max_length=255, blank=True, null=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     GENDER_CHOICES = (
         ('Male', 'Male'),
@@ -62,12 +67,6 @@ class Profile(models.Model):
         blank=True,
     )
 
-    def img_size(self):
-        img = self.image
-        pass
-
-    def save(self, *args, **kwargs):
-        pass
 
     def __str__(self):
         return self.user.email or self.user.phone 

@@ -79,9 +79,11 @@ def product_category_page(request, id):
 
 def product_details(request, id):
     product = Product.objects.get(id=id)
+    products = Product.objects.filter(is_show=True, category=product.category)
 
     context = {
-        'product':product
+        'product':product,
+        'products':products
     }
     return render(request, 'store/product-accordion-full-width.html', context)
 
@@ -163,7 +165,12 @@ def cart_quantity_decrement(request):
 @login_required
 def wishlist(request):
     wish_list = Wishlist.objects.filter(user=request.user)
-    return render(request, 'store/wishlist.html',{'wish_list':wish_list})
+    products = Product.objects.filter(is_show=True)
+    context = {
+        'wish_list':wish_list,
+        'products':products
+        }
+    return render(request, 'store/wishlist.html', context)
 
 
 
@@ -291,30 +298,6 @@ def privacy_policy(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def compare(request):
     return render(request, 'store/compare.html')
 
@@ -333,117 +316,3 @@ def track_order(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def blog_left_sidebar(request):
-    return render(request, 'store/blog-left-sidebar.html')
-
-
-
-def blog_right_sidebar(request):
-    return render(request, 'store/blog-right-sidebar.html')
-
-
-
-
-
-
-def blog_detail_left_sidebar(request):
-    return render(request, 'store/blog-detail-left-sidebar.html')
-
-
-
-def blog_detail_right_sidebar(request):
-    return render(request, 'store/blog-detail-right-sidebar.html')
-
-
-
-def shop_banner_left_sidebar_col_3(request):
-    return render(request, 'store/shop-banner-left-sidebar-col-3.html')
-
-
-
-
-def product_left_sidebar(request):
-    return render(request, 'store/product-left-sidebar.html')
-
-
-
-
-def product_right_sidebar(request):
-    return render(request, 'store/product-right-sidebar.html')
-
-
-
-
-def product_accordion_left_sidebar(request):
-    return render(request, 'store/product-accordion-left-sidebar.html')
-
-
-
-
-def product_accordion_right_sidebar(request):
-    return render(request, 'store/product-accordion-right-sidebar.html')
-
-
-
-
-def product_full_width(request):
-    return render(request, 'store/product-full-width.html')
-
-
-
-
-def product_accordion_full_width(request):
-    return render(request, 'store/product-accordion-full-width.html')
-
-
-
-
-def shop_full_width(request):
-    return render(request, 'store/shop-full-width.html')
-
-
-
-
-def shop_banner_left_sidebar_col_4(request):
-    return render(request, 'store/shop-banner-left-sidebar-col-4.html')
-
-
-
-
-def shop_full_width_col_6(request):
-    return render(request, 'store/shop-full-width-col-6.html')
-
-
-
-
-def shop_list_right_sidebar(request):
-    return render(request, 'store/shop-list-right-sidebar.html')
-
-
-
-
-def load_districts(request):
-    division_id = request.GET.get('division_id')
-    objs = District.objects.filter(division__id=division_id).order_by('name')
-    return render(request, 'store/load_data/dropdown_list.html', {'objs': objs})
-
-
-def load_sub_districts(request):
-    district_id = request.GET.get('district_id')
-    objs = SubDistrict.objects.filter(district__id=district_id).order_by('name')
-    return render(request, 'store/load_data/dropdown_list.html', {'objs': objs})

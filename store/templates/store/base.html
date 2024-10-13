@@ -41,8 +41,8 @@ Copyright 2024
     <link rel="stylesheet" id="main_style" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
 
-    <!-- daisyui -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    {% comment %} <!-- daisyui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" /> {% endcomment %}
 
 </head>
 
@@ -78,7 +78,6 @@ Copyright 2024
     <!-- Main Js -->
     <script src="{% static 'assets/js/main.js' %}"></script>
     <script src="{% static 'assets/js/demo-1.js' %}"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         const Toast = Swal.mixin({
@@ -99,8 +98,11 @@ Copyright 2024
         })
         {% endfor %}
     </script>
+    
+   
 </body>
 
 
 <!-- Mirrored from maraviyainfotech.com/projects/grabit-tailwind/grabit-tailwind/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Sep 2024 15:48:55 GMT -->
+
 </html>

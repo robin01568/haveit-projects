@@ -40,7 +40,6 @@
                 <!-- Select Bar Start -->
                 {% if category %}
                 <div class="gi-select-bar mt-[-5px] mx-[-5px] mb-[25px] flex flex-wrap justify-end ">
-                    
                     {% if size %}
                         <span class="gi-select-btn m-[5px] px-[10px] border-[1px] border-solid border-[#eee] rounded-[5px] text-[#777] text-[14px] flex items-center capitalize">{{ size.name }}
                             <a class="gi-select-cancel ml-[15px] text-[#ff8585] text-[18px] transition-all duration-[0.3s] ease-in-out" href="{% url 'product_category_page' category.id %}?size_id=&color_id={{ color.id }}">×</a>
@@ -74,8 +73,12 @@
                                                         <span class="label veg max-[991px]:hidden">
                                                             <span class="dot"></span>
                                                         </span>
-                                                        <img class="main-image max-w-full z-[1] transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.image.url }}" alt="Product">
-                                                        <img class="hover-image absolute z-[2] top-[0] left-[0] opacity-[0] max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.hover_image.url }}" alt="Product">
+                                                        {% if i.image %}
+                                                            <img class="main-image max-w-full z-[1] transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.image.url }}" alt="Product">
+                                                        {% endif %}
+                                                        {% if i.hover_image %}
+                                                            <img class="hover-image absolute z-[2] top-[0] left-[0] opacity-[0] max-w-full transition-all duration-[0.3s] ease delay-[0s]" src="{{ i.hover_image.url }}" alt="Product">
+                                                        {% endif %}
                                                     </a>
                                                     <span class="flags flex flex-col p-[0] uppercase absolute top-[10px] right-[10px] z-[2]">
                                                         <span class="sale py-[5px] px-[10px] text-[11px] font-medium leading-[12px] text-left uppercase flex items-center bg-[#ff7070] text-[#fff] tracking-[0.5px] relative rounded-[5px]">Sale</span>
@@ -104,11 +107,11 @@
                                                 </div>
                                             </div>
                                             <div class="gi-pro-content h-full p-[20px] relative z-[10] flex flex-col text-left border-t-[1px] border-solid border-[#eee]">
-                                                <a href="shop-left-sidebar-col-3.html">
+                                                <a href="{% url 'product_category_page' i.category.id %}">
                                                     <h6 class="gi-pro-stitle mb-[10px] font-normal text-[#999] text-[13px] capitalize font-manrope tracking-[0.01rem] leading-[1.2]">{{ i.category.name }}</h6>
                                                 </a>
                                                 <h5 class="gi-pro-title h-full mb-[10px] text-[16px] tracking-[0.01rem] font-normal leading-[1.2]">
-                                                    <a href="product-left-sidebar.html" class="text-[#4b5966] block text-[14px] leading-[22px] font-normal tracking-[0.85px] capitalize font-Poppins">{{ i.title }} </a>
+                                                    <a href="{% url 'product_details' i.id %}" class="text-[#4b5966] block text-[14px] leading-[22px] font-normal tracking-[0.85px] capitalize font-Poppins">{{ i.title }} </a>
                                                 </h5>
                                                 <p class="gi-info text-[15px] leading-[28px] font-light tracking-[0.02rem] mb-[16px] hidden">{{ i.short_description }}</p>
                                                 <div class="gi-pro-rat-price mt-[5px] mb-[0] flex flex-col">
@@ -167,27 +170,35 @@
                                 <h3 class="gi-sidebar-title font-semibold tracking-[0] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.2]">Category</h3>
                             </div>
                             <div class="gi-sb-block-content mt-[15px]">
-                                <ul class="h-52 overflow-y-scroll overflow-x-hidden border-b border-slate-200 p-2">
+                                <ul class=" border-b border-slate-200 p-2">
                                     <li>
                                         <div class="gi-sidebar-block-item py-[5px] relative flex flex-row">
-                                            <a href="{% url 'product_page' %}" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
+                                            {% comment %} <a href="{% url 'product_page' %}" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]"> {% endcomment %}
                                                 <input type="radio" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]" {% if not category %}checked{% endif %}> 
-                                                <span class="flex"><i class="fi-rr-cupcake w-[20px] h-[20px] mr-[7px] text-[17px]"></i>All</span>
-                                                <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
+                                                <span class="flex">All</span>
+                                                {% comment %} <span class="checked absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span> {% endcomment %}
                                             </a>
                                         </div>
                                     </li>
-
                                     {% for c in categories %}
-                                    <li>
-                                        <div class="gi-sidebar-block-item py-[5px] relative flex flex-row">
-                                            <a href="{% url 'product_category_page' c.id %}" class="w-full text-[#777] text-[14px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[30px]">
-                                                <input type="radio" class="w-full h-[calc(100% - 5px)] absolute opacity-[0] cursor-pointer z-[9] top-[50%] translate-y-[-50%]" {% if category.id == c.id %}checked{% endif %}> 
-                                                <span class="flex"><i class="fi-rr-cupcake w-[20px] h-[20px] mr-[7px] text-[17px]"></i>{{ c.name }}</span>
-                                                <span class="{% if category.id == c.id %}checked{% endif %} absolute top-[50%] left-[0] h-[18px] w-[18px] bg-[#fff] border-[1px] border-solid border-[#eee] transition-all duration-[300ms] linear translate-y-[-50%] rounded-[5px] overflow-hidden"></span>
-                                            </a>
-                                        </div>
-                                    </li>
+                                        {% if c.parent %}
+                                        <li>
+                                            <div class="gi-sidebar-block-item py-[5px] relative flex flex-row">
+                                                <a href="{% url 'product_category_page' c.id %}" class="w-full text-[#777] text-[16px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[3px]">
+                                                    <span class="flex {% if category.id == c.id %}text-red-700{% endif %}">{{ c.name }}</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        {% else %}
+                                        <li>
+                                            <div class="gi-sidebar-block-item py-[5px] relative flex flex-row gi-sidebar-title font-semibold tracking-[{{c.id}}] relative text-[#4b5966] w-full flex justify-between font-Poppins text-[17px] leading-[1.{{c.id}}]">
+                                                <a href="{% url 'product_category_page' c.id %}" class="w-full text-[#777] text-[16px] mt-[0] leading-[20px] font-normal capitalize cursor-pointer flex justify-between pl-[3px]">
+                                                    <span class="flex {% if category.id == c.id %}text-red-700{% endif %}">{{ c.name }}</span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        {% endif %}
+                                        
                                     {% endfor %}
                                 </ul>
                             </div>

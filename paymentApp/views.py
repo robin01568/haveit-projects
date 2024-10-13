@@ -4,11 +4,17 @@ from django.contrib.auth.decorators import login_required
 from .forms import ShippingAddressForm
 from django.contrib import messages
 from django.utils import timezone
+from .models import ShippingAddress
 
 # Create your views here.
 
 @login_required
 def checkout(request):
+    shipping_request = request.GET.get('shipping_data', '')
+    if shipping_request:
+        shipping_data = ShippingAddress.objects.filter(order__user=request.user).last()
+    else:
+        shipping_data = ''
     order_items = OrderItem.objects.filter(user=request.user, ordered=False)
     order = Order.objects.filter(user=request.user, ordered=False).last()
     products = Product.objects.filter(is_show=True)
@@ -46,7 +52,8 @@ def checkout(request):
     context = {
         'order':order,
         'order_items':order_items,
-        'products':products
+        'products':products,
+        'shipping_data':shipping_data,
         }
     return render(request, 'paymentApp/checkout.html', context)
 
