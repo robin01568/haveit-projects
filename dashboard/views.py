@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from .forms import *
 from core.models import *
 from Store.models import *
@@ -25,7 +26,7 @@ def division_add(request):
             return redirect('division_list')
     else:
         form = DivisionForm()
-    return render(request, 'dashboard/location-data/division/form.html', {'form': form})
+    return render(request, 'dashboard/base-full-form.html', {'form': form})
 
 def division_edit(request, id):
     obj = Division.objects.get(id=id)
@@ -36,7 +37,7 @@ def division_edit(request, id):
             return redirect('division_list')
     else:
         form = DivisionForm(instance=obj)
-    return render(request, 'dashboard/location-data/division/form.html', {'form':form})
+    return render(request, 'dashboard/base-full-form.html', {'form':form})
 
 def division_delete(request, id):
     Division.objects.get(id=id).delete()
@@ -51,8 +52,12 @@ def division_delete(request, id):
 ## ============= Website information ==============
 
 ## ============= Terms & Condition ==============
+
 def terms_conditions_list(request):
-    query = TermsCondition.objects.all()
+    obj_list = TermsCondition.objects.all()
+    paginator = Paginator(obj_list, 10)
+    page_number = request.GET.get("page")
+    query = paginator.get_page(page_number)
     return render(request, 'dashboard/web-data/terms/list.html', {'query': query})
 
 def terms_conditions_add(request):
@@ -63,7 +68,7 @@ def terms_conditions_add(request):
             return redirect('terms_conditions_list')
     else:
         form = TermsConditionForm()
-    return render(request, 'dashboard/web-data/terms/form.html', {'form': form})
+    return render(request, 'dashboard/base-full-form.html', {'form': form})
 
 def terms_conditions_edit(request, id):
     obj = TermsCondition.objects.get(id=id)
@@ -74,7 +79,7 @@ def terms_conditions_edit(request, id):
             return redirect('terms_conditions_list')
     else:
         form = TermsConditionForm(instance=obj)
-    return render(request, 'dashboard/web-data/terms/form.html', {'form':form})
+    return render(request, 'dashboard/base-full-form.html', {'form':form})
 
 def terms_conditions_delete(request, id):
     TermsCondition.objects.get(id=id).delete()

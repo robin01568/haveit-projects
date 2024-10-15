@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from core.models import Division, District, SubDistrict
 
-class CustomUserManager(BaseUserManager):
+class CustomUserManager(BaseUserManager): # don't integrate on dashboard
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError('The Email field must be set')
@@ -23,7 +23,7 @@ class CustomUserManager(BaseUserManager):
 
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class CustomUser(AbstractBaseUser, PermissionsMixin): # don't integrate on dashboard
     phone = models.CharField(max_length=15, unique=True, null=True, blank=True)
     email = models.EmailField(unique=True, null=True, blank=True)
     full_name = models.CharField(max_length=60, null=True, blank=True)
@@ -44,16 +44,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     
 
-class Profile(models.Model):
+class Profile(models.Model): # don't integrate on dashboard
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="sellerpicture", default='avatar.png')
     date_of_birth = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
     division = models.ForeignKey(Division, on_delete=models.CASCADE, related_name='profiles', blank=True, null=True)
     district = models.ForeignKey(District, on_delete=models.CASCADE, related_name='profiles', blank=True, null=True)
     sub_district = models.ForeignKey(SubDistrict, on_delete=models.CASCADE, related_name='profiles', blank=True, null=True)
-    # division = models.CharField(max_length=255, blank=True, null=True)
-    # district = models.CharField(max_length=255, blank=True, null=True)
-    # sub_district = models.CharField(max_length=255, blank=True, null=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     GENDER_CHOICES = (
         ('Male', 'Male'),
@@ -66,7 +63,6 @@ class Profile(models.Model):
         null=True,
         blank=True,
     )
-
 
     def __str__(self):
         return self.user.email or self.user.phone 

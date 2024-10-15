@@ -41,7 +41,7 @@ class ProductCategory(models.Model):
         return self.name
 
 
-class Product(models.Model):
+class Product(models.Model): # don't integrate on dashboard
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     product_code = models.CharField(max_length=255)
@@ -96,7 +96,7 @@ class Coupon(models.Model):
         return self.code
 
 
-class OrderItem(models.Model):
+class OrderItem(models.Model): # don't integrate on dashboard
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
@@ -113,7 +113,7 @@ class OrderItem(models.Model):
         return total
 
 
-class Order(models.Model):
+class Order(models.Model): # don't integrate on dashboard
     STATUS = (
         ("Pending","Pending"),
         ("Process","Process"),
@@ -266,12 +266,7 @@ class AboutUs(models.Model):
         return self.name
     
     
-    
 
-    
-    
-    
-    
 class faq(models.Model):
     questions = models.CharField(max_length=255)
     answer = models.TextField()

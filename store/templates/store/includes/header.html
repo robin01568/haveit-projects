@@ -146,7 +146,7 @@
                         <div class="gi-header-bottons flex justify-end">
                             <!-- Header User Start -->
                             <div class="gi-acc-drop relative">
-                                <a href="{% url 'profile' %}" class="gi-header-btn gi-header-user dropdown-toggle gi-user-toggle mr-[30px] transition-all duration-[0.3s] ease-in-out relative flex text-[#4b5966] w-[auto] items-center whitespace-nowrap" title="Account">
+                                <a href="javascript:void(0)" class="gi-header-btn gi-header-user dropdown-toggle gi-user-toggle mr-[30px] transition-all duration-[0.3s] ease-in-out relative flex text-[#4b5966] w-[auto] items-center whitespace-nowrap" title="Account">
                                     <div class="header-icon relative flex">
                                         <i class="fi-rr-user text-[24px] leading-[17px]"></i>
                                     </div>
@@ -163,7 +163,11 @@
                                 </a>
                                 <ul class="gi-dropdown-menu min-w-[150px] py-[5px] transition-all duration-[0.3s] ease-in-out mt-[25px] absolute z-[16] text-left bg-[#fff] block opacity-0 invisible left-[0] right-[auto] border-[1px] border-solid border-[#eee] rounded-[5px]">
                                     {% if request.user.is_authenticated %}
-                                        <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="{% url 'profile_dashboard' %}">Dashboard</a></li>
+                                        {% if request.user.is_customer %}
+                                            <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="{% url 'profile_dashboard' %}">Dashboard</a></li>
+                                        {% else %}
+                                            <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="{% url 'dashboard' %}">Dashboard</a></li>
+                                        {% endif %}
                                         <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="{% url 'logout' %}">Logout</a></li>
                                         <li><a class="dropdown-item py-[10px] px-[20px] block w-full font-normal text-[13px] text-[#777] hover:bg-transparent hover:text-[#5caf90]" href="{% url 'checkout' %}">Checkout</a></li>
                                     {% else %}

@@ -1,6 +1,7 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from .models import *
 from .forms import *
 
@@ -28,11 +29,15 @@ def home(request):
 
 def product_page(request):
     products = Product.objects.filter(is_show=True)
+    paginator = Paginator(products, 12)
+    page_number = request.GET.get("page")
+    query = paginator.get_page(page_number)
+
     categories = ProductCategory.objects.all()
     sizes = Size.objects.all()
     colors = Color.objects.all()
     context = {
-        'products':products,
+        'query':query,
         'categories':categories,
         'sizes':sizes,
         'colors':colors,
@@ -45,6 +50,7 @@ def product_category_page(request, id):
     category = ProductCategory.objects.get(id=id)
     size_id = request.GET.get('size_id')
     color_id = request.GET.get('color_id')
+    sort_by = request.GET.get('sort-by', 'id')
     color = None
     size = None
     if color_id:
@@ -53,13 +59,16 @@ def product_category_page(request, id):
         size = Size.objects.get(id=size_id)
 
     if size:
-        products = Product.objects.filter(is_show=True, category=category, size__name__icontains=size)
+        products = Product.objects.filter(is_show=True, category=category, size__name__icontains=size).order_by(sort_by)
     if color:
-        products = Product.objects.filter(is_show=True, category=category, color__name__icontains=color)
+        products = Product.objects.filter(is_show=True, category=category, color__name__icontains=color).order_by(sort_by)
     if size and color:
-        products = Product.objects.filter(is_show=True, category=category, size__name__icontains= size, color__name__icontains=color)
+        products = Product.objects.filter(is_show=True, category=category, size__name__icontains= size, color__name__icontains=color).order_by(sort_by)
     else:
-        products = Product.objects.filter(is_show=True, category=category)
+        products = Product.objects.filter(is_show=True, category=category).order_by(sort_by)
+    paginator = Paginator(products, 1)
+    page_number = request.GET.get("page")
+    query = paginator.get_page(page_number)
 
     categories = ProductCategory.objects.all()
     sizes = Size.objects.all()
@@ -68,7 +77,7 @@ def product_category_page(request, id):
         'category':category,
         'size':size,
         'color':color,
-        'products':products,
+        'query':query,
         'categories':categories,
         'sizes':sizes,
         'colors':colors,

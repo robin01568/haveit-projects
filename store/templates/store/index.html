@@ -67,7 +67,7 @@
                                 <span class="gi-lbl px-[5px] absolute top-[0] right-[0] bg-[#5caf90] text-[#fff] text-[12px] font-semibold rounded-bl-[5px] rounded-tr-[5px]">30%</span>
                                 <i class="fi fi-tr-peach transition-all duration-[0.3s] ease-in-out text-[40px] my-[10px] text-[#5caf90] leading-[0]"></i>
                                 <div class="gi-cat-detail text-center">
-                                    <a href="shop-left-sidebar-col-3.html">
+                                    <a href="{% url 'product_category_page' i.id %}">
                                         <h4 class="gi-cat-title m-[0] text-[15px] leading-[22px] font-semibold text-[#4b5966] capitalize font-manrope">{{ i.name }}</h4>
                                     </a>
                                     <p class="items m-[0] text-[13px] leading-[28px] text-[#777]">{{ i.product_counts }} Items</p>
