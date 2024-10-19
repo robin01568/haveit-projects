@@ -4,6 +4,13 @@ from .views import *
 urlpatterns = [
     path('dashboard/', dashboard, name="dashboard"),
 
+    ## ==================== Users =================
+    path('user-list/', user_list, name="user_list"),
+    path('user-add/', user_add, name="user_add"),
+    path('user-edit/<int:id>', user_edit, name="user_edit"),
+    path('user-change-password/<int:id>', user_change_password, name="user_change_password"),
+    path('user-delete/<int:id>', user_delete, name="user_delete"),
+
     ## ==================== Divisions =================
     path('division-list/', division_list, name="division_list"),
     path('division-add/', division_add, name="division_add"),
@@ -93,6 +100,7 @@ urlpatterns = [
     path('order-overview/<int:id>', order_details, name="order_details"),
     path('order-add/', order_add, name="order_add"),
     path('order-edit/<int:id>', order_edit, name="order_edit"),
+    path('order-cancel/', order_cancel, name="order_cancel"),
     path('order-delete/<int:id>', order_delete, name="order_delete"),
 
     ## ====================== Product =======================================

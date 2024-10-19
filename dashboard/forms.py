@@ -4,8 +4,17 @@ from Store.models import *
 from PaymentApp.models import *
 from UserAccount.models import *
 from ckeditor.widgets import CKEditorWidget
-
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
+
+## ============= CustomUser ==============
+class CustomUserForm(forms.ModelForm):
+    password = ReadOnlyPasswordHashField()
+    class Meta:
+        model = CustomUser
+        fields = "__all__"
+    
+
 ## ============================= Location data Start ===========================
 ## ============= Division ==============
 class DivisionForm(forms.ModelForm):

@@ -152,10 +152,10 @@ class Order(models.Model): # don't integrate on dashboard
 
     def shipping_charge(self, value="Inside Dhaka"):
         if value=="Inside Dhaka":
-            shipping_charge = 80
+            total = 80
         else:
-            shipping_charge = 160
-        return shipping_charge
+            total = 160
+        return total
 
     def coupon_total(self):
         if self.coupon:

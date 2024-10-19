@@ -15,10 +15,10 @@ def checkout(request):
         shipping_data = ShippingAddress.objects.filter(order__user=request.user).last()
     else:
         shipping_data = ''
-    order_items = OrderItem.objects.filter(user=request.user, ordered=False)
     order = Order.objects.filter(user=request.user, ordered=False).last()
+    order_items = OrderItem.objects.filter(user=request.user, ordered=False)
     products = Product.objects.filter(is_show=True)
-
+    
     if request.method == 'POST':
         form = ShippingAddressForm(request.POST)
         if form.is_valid():
@@ -48,7 +48,7 @@ def checkout(request):
             return redirect('home')
         else:
             print(form.errors)
-        
+    
     context = {
         'order':order,
         'order_items':order_items,
