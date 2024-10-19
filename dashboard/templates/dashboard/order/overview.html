@@ -147,7 +147,9 @@
                                     <td class="px-3.5 py-4 border-b border-dashed first:pl-0 last:pr-0 border-slate-200 dark:border-zink-500">
                                         <div class="flex items-center gap-3">
                                             <div class="flex items-center justify-center rounded-md size-12 bg-slate-100 shrink-0">
-                                                <img src="assets/images/img-08.png" alt="" class="h-8">
+                                                {% if i.product.image %}
+                                                <img src="{{ i.product.image.url }}" alt="" class="h-8">
+                                                {% endif %}
                                             </div>
                                             <div class="grow">
                                                 <h6 class="mb-1 text-15"><a href="apps-ecommerce-product-overview.html" class="transition-all duration-300 ease-linear hover:text-custom-500">{{ i.product.title }}</a></h6>
