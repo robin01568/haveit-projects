@@ -61,9 +61,12 @@
                             <div class="info text-center">
                                 <h3 class="title text-[20px] font-semibold text-[#4b5966] capitalize tracking-[0.01rem] leading-[1.2] mb-[6px]">Address</h3>
                                 <p class="m-[0] text-[14px] text-[#777] leading-[28px] font-light tracking-[0.02rem]">
-                                    <i class="fa fa-map-marker text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp;
+                                    <i class="fa fa-mobile text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; {{ con_web_info.address1|safe }}
                                 </p>
-                            </div>
+                                <p class="m-[0] text-[14px] text-[#777] leading-[28px] font-light tracking-[0.02rem]">
+                                    <i class="fa fa-mobile text-[14px] text-[#777] text-center" aria-hidden="true"></i> &nbsp; {{ con_web_info.address2|safe }}
+                                </p>
+                                
                         </div>
                         <div class="space"></div>
                     </div>

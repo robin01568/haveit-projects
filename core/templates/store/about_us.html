@@ -49,12 +49,9 @@
                         <div class="gi-about-detail h-full flex flex-col justify-center max-[1199px]:mt-[30px]">
                             <div class="section-title pt-[0] flex flex-col mb-[20px]">
                                 <h2 class="mb-[15px] font-manrope text-[26px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1]"><span class="text-[#5caf90]">{{ a.name }}</span></h2>
-                                <p class="m-0 text-[#777] text-[18px] font-medium uppercase max-[991px]:text-[17px] max-[767px]:text-[16px] max-[575px]:text-[15px]">{% if a.short_description is not none %}{{ a.short_description }}{% endif %}</p>
+                                <p class="m-0 text-[#777] text-[18px] font-medium uppercase max-[991px]:text-[17px] max-[767px]:text-[16px] max-[575px]:text-[15px]">{{ a.short_description|safe }}</p>
                             </div>
-                            <p class="text-[#777] text-[14px] font-normal mb-[16px]">{% if a.description1 is not none %}{{ a.description1 }}{% endif %}</p>
-                            <p class="text-[#777] text-[14px] font-normal mb-[16px]">{% if a.description2 is not none %}{{ a.description2 }}{% endif %}</p>
-                            <p class="text-[#777] text-[14px] font-normal mb-[16px]">{% if a.description3 is not none %}{{ a.description3 }}{% endif %}</p>
-                            <p class="text-[#777] text-[14px] font-normal mb-[16px]">{% if a.description4 is not none %}{{ a.description4 }}{% endif %}</p>
+                            <p class="text-[#777] text-[14px] font-normal mb-[16px]">{{ a.description1|safe }}</p>
                         </div>
                     </div>
                 </div>
@@ -78,7 +75,7 @@
                         </div>
                         <div class="gi-service-desc">
                             <h3 class="mb-[10px] text-[18px] font-medium text-[#4b5966] tracking-[0.6px] font-Poppins leading-[1.2] max-[575px]:text-[16px]">Free Shipping</h3>
-                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.shipping }}</p>
+                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.shipping|safe }}</p>
                         </div>
                     </div>
                 </div>
@@ -89,7 +86,7 @@
                         </div>
                         <div class="gi-service-desc">
                             <h3 class="mb-[10px] text-[18px] font-medium text-[#4b5966] tracking-[0.6px] font-Poppins leading-[1.2] max-[575px]:text-[16px]">24X7 Support</h3>
-                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.support }}</p>
+                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.support|safe }}</p>
                         </div>
                     </div>
                 </div>
@@ -100,7 +97,7 @@
                         </div>
                         <div class="gi-service-desc">
                             <h3 class="mb-[10px] text-[18px] font-medium text-[#4b5966] tracking-[0.6px] font-Poppins leading-[1.2] max-[575px]:text-[16px]">30 Days Return</h3>
-                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.returns }}</p>
+                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.returns|safe }}</p>
                         </div>
                     </div>
                 </div>
@@ -111,7 +108,7 @@
                         </div>
                         <div class="gi-service-desc">
                             <h3 class="mb-[10px] text-[18px] font-medium text-[#4b5966] tracking-[0.6px] font-Poppins leading-[1.2] max-[575px]:text-[16px]">Payment Secure</h3>
-                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.payment }}</p>
+                            <p class="m-[0] text-[14px] text-[#777] leading-[1.5] tracking-[0.5px] font-light">{{ services.payment|safe }}</p>
                         </div>
                     </div>
                 </div>

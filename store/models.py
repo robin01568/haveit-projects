@@ -137,6 +137,7 @@ class Order(models.Model): # don't integrate on dashboard
     coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE, blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS)
     ordered = models.BooleanField(default=False)
+    complete_date = models.DateTimeField(blank=True, null=True)
     ordered_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
 
@@ -214,10 +215,7 @@ class SupportSection(models.Model):
 class blog(models.Model):
     title = models.CharField(max_length=255)
     short_description = models.TextField(blank=True, null=True)
-    short_description1 = models.TextField(blank=True, null=True)
-    short_description2 = models.TextField(blank=True, null=True)
-    short_description3 = models.TextField(blank=True, null=True)
-    detail_description = models.TextField(blank=True, null=True)
+    details_description = models.TextField(blank=True, null=True)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     date = models.DateField()
     image = models.ImageField(upload_to='Blog-image')
@@ -250,45 +248,3 @@ class ContactUs(models.Model):
         return self.full_name
     
     
-    
-class AboutUs(models.Model):
-    name = models.CharField(max_length=255)
-    short_description = models.TextField(blank=True, null=True)
-    description1 = models.TextField(blank=True, null=True)
-    description2 = models.TextField(blank=True, null=True)
-    description3 = models.TextField(blank=True, null=True)
-    description4 = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='About_us-image')
-    img1 = models.ImageField(upload_to='About_us-image', blank=True, null=True)
-    img2 = models.ImageField(upload_to='About_us-image', blank=True, null=True)
-    
-    def __str__(self):
-        return self.name
-    
-    
-
-class faq(models.Model):
-    questions = models.CharField(max_length=255)
-    answer = models.TextField()
-    
-    def __str__(self):
-        return self.questions
-    
-    
-    
-class TermsCondition(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    
-    def __str__(self):
-        return self.title
-    
-    
-    
-    
-class PrivacyPolicy(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    
-    def __str__(self):
-        return self.title

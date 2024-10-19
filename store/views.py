@@ -88,11 +88,13 @@ def product_category_page(request, id):
 
 def product_details(request, id):
     product = Product.objects.get(id=id)
-    products = Product.objects.filter(is_show=True, category=product.category)
+    products = Product.objects.filter(id=product.id)
+    new_products = Product.objects.filter(is_show=True)
 
     context = {
         'product':product,
-        'products':products
+        'products':products,
+        'new_products':new_products
     }
     return render(request, 'store/product-accordion-full-width.html', context)
 
@@ -259,45 +261,7 @@ def contact(request):
 
 
 
-def about(request):
-    abouts = AboutUs.objects.all()
-    services = SupportSection.objects.all().last()
 
-    context = {
-        'abouts':abouts,
-        'services':services,
-    }
-    return render(request, 'store/about_us.html', context)
-
-
-
-def faqs(request):
-    faqs = faq.objects.all()
-    
-    context = {
-        'faqs':faqs
-    }
-    return render(request, 'store/faq.html', context)
-
-
-
-def terms_condition(request):
-    TermsConditions = TermsCondition.objects.all()
-    
-    context = {
-        'TermsConditions':TermsConditions
-    }
-    return render(request, 'store/terms-condition.html', context)
-
-
-
-def privacy_policy(request):
-    PrivacyPolicys = PrivacyPolicy.objects.all()
-    
-    context = {
-        'PrivacyPolicys':PrivacyPolicys
-    }
-    return render(request, 'store/privacy-policy.html', context)
 
 
 

@@ -32,8 +32,10 @@ def login_view(request):
         user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
-
-            return redirect('home')
+            if user.is_superuser or user.is_staff:
+                return redirect('dashboard')
+            else:
+                return redirect('home')
     return render(request, 'userAccount/login.html')
 
 

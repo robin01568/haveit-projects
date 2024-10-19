@@ -20,10 +20,7 @@ urlpatterns = [
     path('blog-full-width/', blog_full_width, name="blog_full_width"),
     path('blog-details/<int:id>', blog_details, name='blog_details'),
     path('contac-us/', contact, name="contact_us"),
-    path('about-us/', about, name="about_us"),
-    path('faqs/', faqs, name="faqs"),
-    path('terms-condition/', terms_condition, name="terms_condition"),
-    path('privacy-policy/', privacy_policy, name="privacy_policy"),
+ 
 
 
 

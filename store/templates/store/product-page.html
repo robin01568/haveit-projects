@@ -111,7 +111,7 @@
                                                 <h5 class="gi-pro-title h-full mb-[10px] text-[16px] tracking-[0.01rem] font-normal leading-[1.2]">
                                                     <a href="{% url 'product_details' i.id %}" class="text-[#4b5966] block text-[14px] leading-[22px] font-normal tracking-[0.85px] capitalize font-Poppins">{{ i.title }} </a>
                                                 </h5>
-                                                <p class="gi-info text-[15px] leading-[28px] font-light tracking-[0.02rem] mb-[16px] hidden">{{ i.short_description }}</p>
+                                                <p class="gi-info text-[15px] leading-[28px] font-light tracking-[0.02rem] mb-[16px] hidden">{{ i.short_description|safe }}</p>
                                                 <div class="gi-pro-rat-price mt-[5px] mb-[0] flex flex-col">
                                                     {% comment %} <span class="gi-pro-rating mb-[10px] opacity-[0.7] relative">
                                                         <i class="gicon gi-star fill inline-block text-[#f27d0c] float-left text-[14px] mr-[3px]"></i>

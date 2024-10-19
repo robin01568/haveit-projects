@@ -23,9 +23,7 @@
                                     <div class="single-blog-detail">
                                         <label class="mb-[15px] text-[#999] inline-block">{{ blogs.date }} - <a href="#" class="text-[#999] hover:text-[#5caf90]">{{ blogs.category.name }}</a></label>
                                         <h3 class="text-[22px] font-semibold text-[#4b5966] leading-[1.2] mb-[6px] max-[767px]:text-[20px] max-[575px]:text-[19px]">{{ blogs.title }}</h3>
-                                        <p class="gi-text text-[#777] text-[14px] mb-[16px]">{% if blogs.short_description is not none %}{{ blogs.short_description }}{% endif %}</p>
-                                        <p class="gi-text-highlight text-[#777] text-[14px] italic font-medium mb-[16px]">{% if blogs.short_description1 is not none %}{{ blogs.short_description1 }}{% endif %}</p>
-                                        <p class="text-[#777] text-[14px] mb-[16px]">{{ blogs.detail_description }}</p>
+                                        <p class="gi-text text-[#777] text-[14px] mb-[16px]">{% if blogs.short_description is not none %}{{ blogs.short_description|safe }}{% endif %}</p>
                                         <div class="sub-img mt-[30px] mx-[-12px]">
                                             <div class="flex flex-wrap">
                                                 <div class="min-[768px]:w-[50%] w-full px-[12px] mb-[24px]">
@@ -36,9 +34,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="text-[#777] text-[14px] leading-[28px] mb-[16px]">{% if blogs.short_description2 is not none %}{{ blogs.short_description2 }}{% endif %}</p>
-                                        <p class="text-[#777] text-[14px] leading-[28px] mb-[16px]">{% if blogs.short_description3 is not none %}{{ blogs.short_description3 }}{% endif %}</p>
-                                    </div>
+                                    <p class="text-[#777] text-[14px] mb-[16px]">{% if blogs.details_description %}{{ blogs.details_description|safe }}{% endif %}</p>
                                 </div>
                             </div>
                         </div>
@@ -109,6 +105,7 @@
                                     <h4 class="gi-blog-dgi-title mb-[30px] py-[10px] px-[15px] text-[16px] font-semibold text-[#4b5966] bg-[#f8f8fb] rounded-[5px] leading-[1.2]">Leave A Reply</h4>
                                     <form method="post" class="gi-blog-form" action="#">
                                         {% csrf_token %}
+                                        {{ form.media }}
                                         <div class="flex flex-wrap mx-[-12px]">
                                             <div class="min-[768px]:w-[50%] w-full px-[12px]">
                                                 <div class="gi-leave-form">
@@ -126,7 +123,7 @@
                                                     <button type="submit" class="gi-btn-2 transition-all duration-[0.3s] ease-in-out py-[10px] px-[15px] text-[14px] font-medium bg-[#5caf90] text-[#fff] text-center rounded-[5px] hover:bg-[#4b5966] hover:text-[#fff]">Submit</button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> 
                                     </form>
                                 </div>
                             </div>

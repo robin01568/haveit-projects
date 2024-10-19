@@ -1,8 +1,11 @@
 from django.contrib import admin
 from .models import *
-from .sakib import *
+
 # Register your models here.
-admin.site.register(Sakib)
 admin.site.register(Division)
 admin.site.register(District)
 admin.site.register(SubDistrict)
+admin.site.register(AboutUs)
+admin.site.register(faq)
+admin.site.register(TermsCondition)
+admin.site.register(PrivacyPolicy)
