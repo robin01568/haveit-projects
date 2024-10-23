@@ -109,3 +109,68 @@ def remove_order(request, id):
     Order.objects.get(id=id).delete()
     messages.success(request, "Removed Successfully")
     return redirect('order_historty')
+
+
+### reset/forget password
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.utils.encoding import force_str
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
+from Kenakata.settings import DEFAULT_FROM_EMAIL
+
+def password_reset(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            user = None
+        if user:
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            token = default_token_generator.make_token(user)
+            reset_link = reverse('password_reset_confirm', args=(uid, token))
+            current_site = get_current_site(request)
+            mail_subject = 'Password Reset Request'
+            message = render_to_string('userAccount/reset/password_reset_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'reset_link': reset_link,
+            })
+            send_mail(mail_subject, message, DEFAULT_FROM_EMAIL, [email])
+        return render(request, 'userAccount/reset/password_reset_done.html', {'email': email})
+    return render(request, 'userAccount/reset/password_reset.html')
+
+
+def password_reset_confirm(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user and default_token_generator.check_token(user, token):
+        if request.method == 'POST':
+            new_password = request.POST.get('new_password')
+            confirm_password = request.POST.get('confirm_password')
+            if new_password == confirm_password:
+                user.set_password(new_password)
+                user.save()
+                return redirect('password_reset_complete')
+            else:
+                messages.error(request, 'New & confirm password does"t match!!')
+        return render(request, 'userAccount/reset/password_reset_confirm.html')
+    else:
+        return HttpResponse('Password reset link is invalid')
+
+
+def password_reset_done(request):
+    return render(request, 'userAccount/reset/password_reset_done.html')
+
+
+def password_reset_complete(request):
+    return render(request, 'userAccount/reset/password_reset_complete.html')

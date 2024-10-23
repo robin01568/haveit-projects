@@ -723,21 +723,27 @@ def order_delete(request, id):
 ## ========================== Product Data Start =======================================
 ## ======================= Products ==========================
 
-@login_required
-def pending_product(request):
-    obj_list = Product.objects.filter(is_show=False)
-    paginator = Paginator(obj_list, 10)
-    page_number = request.GET.get("page")
-    query = paginator.get_page(page_number)
-    return render(request, 'dashboard/product-data/product/list.html', {'query': query})
+# @login_required
+# def pending_product(request):
+#     obj_list = Product.objects.filter(is_show=False)
+#     paginator = Paginator(obj_list, 10)
+#     page_number = request.GET.get("page")
+#     query = paginator.get_page(page_number)
+#     return render(request, 'dashboard/product-data/product/list.html', {'query': query})
 
 @login_required
-def accepted_product(request):
-    obj_list = Product.objects.filter(is_show=True)
+def product_list(request):
+    is_show = request.GET.get('is_show')
+    if is_show is not None:
+        obj_list = Product.objects.filter(is_show=(is_show == 'True'))
+    else:
+        obj_list = Product.objects.all()
+        
     paginator = Paginator(obj_list, 10)
     page_number = request.GET.get("page")
     query = paginator.get_page(page_number)
-    return render(request, 'dashboard/product-data/product/list.html', {'query': query})
+    return render(request, 'dashboard/product-data/product/list.html', {'query': query, 'is_show': is_show})
+
 
 @login_required
 def product_add(request):
@@ -761,9 +767,9 @@ def product_edit(request, id):
         if form.is_valid():
             form.save()
             if form.cleaned_data['is_show']:
-                return redirect('accepted_product')
+                return redirect('product_list')
             else:
-                return redirect('pending_product')
+                return redirect('product_list')
             # return redirect('accepted_product') if form.cleaned_data['is_show'] else redirect('pending_product')
     else:
         form = ProductForm(instance=obj)

@@ -61,6 +61,15 @@ MIDDLEWARE = [
 ]
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.bisswas.com'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'support@haveit.bisswas.com'
+EMAIL_HOST_PASSWORD = 'd{N#YKil0b+_@RkUSpp3AVLe'
+DEFAULT_FROM_EMAIL = 'support@haveit.bisswas.com'
+
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
 

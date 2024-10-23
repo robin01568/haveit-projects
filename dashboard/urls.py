@@ -104,8 +104,8 @@ urlpatterns = [
     path('order-delete/<int:id>', order_delete, name="order_delete"),
 
     ## ====================== Product =======================================
-    path('pending-product/', pending_product, name="pending_product"),
-    path('accepted-product/', accepted_product, name="accepted_product"),
+    # path('pending-product/', pending_product, name="pending_product"),
+    path('product-list/', product_list, name="product_list"),
     path('product-add/', product_add, name="product_add"),
     path('product-edit/<int:id>', product_edit, name="product_edit"),
     path('product-delete/<int:id>', product_delete, name="product_delete"),
