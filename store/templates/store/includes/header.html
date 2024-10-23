@@ -75,7 +75,8 @@
                     <div class="gi-header-bottons flex justify-end">
                         <div class="right-icons flex flex-row">
                             <!-- Header User Start -->
-                            <a href="{% url "login" %}" class="gi-header-btn gi-header-user mr-[30px] relative transition-all duration-[0.3s] ease-in-out relative flex text-[#4b5966] w-[auto] items-center">
+                            
+                            <a href="{% if request.user.is_authenticated %}{% if request.user.is_customer %}{% url 'profile_dashboard' %}{% else %}{% url 'dashboard' %}{% endif %}{% else %}{% url 'login' %}{% endif %}" class="gi-header-btn gi-header-user mr-[30px] relative transition-all duration-[0.3s] ease-in-out relative flex text-[#4b5966] w-[auto] items-center">
                                 <div class="header-icon relative flex">
                                     <i class="fi-rr-user text-[24px] leading-[17px]"></i>
                                 </div>

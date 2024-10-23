@@ -20,7 +20,8 @@
             </ul>
         </div>
         <div class="grid grid-cols-12 2xl:grid-cols-12 gap-x-5">
-            <div class="relative col-span-12 overflow-hidden card 2xl:col-span-8 bg-slate-900">
+
+            {% comment %} <div class="relative col-span-12 overflow-hidden card 2xl:col-span-8 bg-slate-900">
                 <div class="absolute inset-0">
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-100" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="1440" height="560" preserveAspectRatio="none" viewBox="0 0 1440 560">
                         <g mask="url(&quot;#SvgjsMask1000&quot;)" fill="none">
@@ -174,7 +175,8 @@
                         </div>
                     </div>
                 </div>
-            </div><!--end col-->
+            </div><!--end col--> {% endcomment %}
+
             <div class="col-span-12 card 2xl:col-span-4 2xl:row-span-2">
                 <div class="card-body">
                     <div class="flex items-center mb-3">
@@ -183,9 +185,10 @@
                             <a href="#!" class="underline transition-all duration-200 ease-linear text-custom-500 hover:text-custom-600">View All <i data-lucide="move-right" class="inline-block align-middle size-4 ltr:ml-1 rtl:mr-1"></i></a>
                         </div>
                     </div>
-                    <div id="orderStatisticsChart" class="apex-charts" data-chart-colors='["bg-purple-500", "bg-sky-500"]' dir="ltr"></div>
+                    <div id="orderStatisticsChart" class="apex-charts" data-chart-colors='["bg-purple-500", "bg-sky-500"]' pending-data-list="1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12," dir="ltr"></div>
                 </div>
             </div><!--end col-->
+
             <div class="col-span-12 card md:col-span-6 lg:col-span-3 2xl:col-span-2">
                 <div class="text-center card-body">
                     <div class="flex items-center justify-center mx-auto rounded-full size-14 bg-custom-100 text-custom-500 dark:bg-custom-500/20">
@@ -195,6 +198,7 @@
                     <p class="text-slate-500 dark:text-zink-200">Total Revenue</p>
                 </div>
             </div><!--end col-->
+
             <div class="col-span-12 card md:col-span-6 lg:col-span-3 2xl:col-span-2">
                 <div class="text-center card-body">
                     <div class="flex items-center justify-center mx-auto text-purple-500 bg-purple-100 rounded-full size-14 dark:bg-purple-500/20">
@@ -204,6 +208,7 @@
                     <p class="text-slate-500 dark:text-zink-200">Total Orders</p>
                 </div>
             </div><!--end col-->
+
             <div class="col-span-12 card md:col-span-6 lg:col-span-3 2xl:col-span-2">
                 <div class="text-center card-body">
                     <div class="flex items-center justify-center mx-auto text-green-500 bg-green-100 rounded-full size-14 dark:bg-green-500/20">
@@ -213,6 +218,7 @@
                     <p class="text-slate-500 dark:text-zink-200">Delivered</p>
                 </div>
             </div><!--end col-->
+            
             <div class="col-span-12 card md:col-span-6 lg:col-span-3 2xl:col-span-2">
                 <div class="text-center card-body">
                     <div class="flex items-center justify-center mx-auto text-red-500 bg-red-100 rounded-full size-14 dark:bg-red-500/20">
@@ -222,6 +228,7 @@
                     <p class="text-slate-500 dark:text-zink-200">Cancelled</p>
                 </div>
             </div><!--end col-->
+
             <div class="col-span-12 card 2xl:col-span-8">
                 <div class="card-body">
                     <div class="flex flex-col gap-4 mb-4 md:mb-3 md:items-center md:flex-row">
@@ -258,6 +265,7 @@
                     <div id="salesRevenueOverview" class="apex-charts" data-chart-colors='["bg-custom-500", "bg-custom-400", "bg-custom-300"]' dir="ltr"></div>
                 </div>
             </div><!--end col-->
+
             <div class="col-span-12 2xl:col-span-4">
                 <div class="grid grid-cols-12 gap-x-5">
                     <div class="col-span-12 card lg:col-span-6 2xl:col-span-12">
@@ -311,6 +319,7 @@
                     </div><!--end col-->
                 </div><!--end grid-->
             </div><!--end col-->
+
             <div class="col-span-12 card 2xl:col-span-12">
                 <div class="card-body">
                     <div class="grid items-center grid-cols-1 gap-3 mb-5 2xl:grid-cols-12">
@@ -598,6 +607,7 @@
                     </div>
                 </div>
             </div><!--end col-->
+
             <div class="col-span-12 card lg:col-span-6 2xl:col-span-3">
                 <div class="card-body">
                     <div class="flex items-center mb-3">
@@ -696,6 +706,7 @@
                     </ul>
                 </div>
             </div><!--end col-->
+
             <div class="col-span-12 card lg:col-span-6 2xl:col-span-3">
                 <div class="card-body">
                     <div class="flex items-center mb-3">
@@ -736,6 +747,7 @@
                     <div id="salesThisMonthChart" class="apex-charts" data-chart-colors='["bg-sky-100", "bg-orange-100", "bg-sky-500", "bg-orange-500"]' dir="ltr"></div>
                 </div>
             </div><!--end col-->
+
             <div class="col-span-12 card lg:col-span-6 2xl:col-span-3">
                 <div class="card-body">
                     <div class="flex items-center mb-3">
@@ -864,6 +876,7 @@
                     </ul>
                 </div>
             </div><!--end col-->
+
             <div class="col-span-12 card lg:col-span-6 2xl:col-span-3">
                 <div class="card-body">
                     <h6 class="relative mb-3 grow text-15">Audience</h6>

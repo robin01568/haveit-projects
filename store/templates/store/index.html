@@ -205,7 +205,7 @@
 <section class="gi-product-tab gi-products py-[40px] max-[767px]:py-[30px] wow fadeInUp" data-wow-duration="2s">
     <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
         <div class="gi-tab-title w-full inline-flex justify-between px-[12px] mb-8 max-[991px]:flex-col">
-            <div class="gi-main-title w-1/2">
+            <div class="gi-main-title w-full md:w-1/2">
                 <div class="section-title mb-[20px] pb-[20px] flex flex-start">
                     <div class="section-detail">
                         <h2 class="gi-title mb-[0] text-[25px] max-[991px]:text-[24px] max-[767px]:text-[22px] max-[575px]:text-[20px] font-semibold text-[#4b5966] relative inline p-[0] capitalize leading-[1] font-manrope tracking-[0.01rem]">New <span class="text-[#5caf90]">Arrivals</span></h2>
@@ -214,7 +214,7 @@
                 </div>
             </div>
             <!-- Tab Start -->
-            <div class="gi-pro-tab mt-[40px] max-[991px]:mt-[-20px] max-[991px]:mb-[30px] w-1/2">
+            <div class="gi-pro-tab mt-[40px] max-[991px]:mt-[-20px] max-[991px]:mb-[30px] w-full md:w-1/2">
                 <ul class="nav-tabs flex flex-nowrap overflow-x-scroll max-[991px]:justify-start" id="myproTab">
                     <li class="active inline-block align-top text-[14px] text-[#777] uppercase p-[0] cursor-pointer font-medium transition-all duration-[0.3s] ease delay-[0s] leading-[20px] tracking-[0.7px] mr-[50px] max-[991px]:mr-[30px] max-[480px]:mr-[20px]">
                         <a class="nav-link relative font-medium p-[0] max-[480px]:text-[13px] max-[480px]:leading-[28px]" href="#all">All</a>
@@ -456,14 +456,14 @@
 <!-- Product tab Area End -->
 
 <!-- Offer Banner Section Start -->
-<section class="gi-offer-section overflow-hidden py-[40px] max-[767px]:py-[30px]">
+<section class="hidden md:block gi-offer-section overflow-hidden py-[40px] max-[767px]:py-[30px]">
     <div class="flex flex-wrap justify-between items-center mx-auto min-[1600px]:max-w-[1600px] min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
         <!--  Offer banners -->
         <div class="w-full flex flex-wrap">
             
             {% for i in offer_banners %}
                 {% if not forloop.first and forloop.counter < 4 %}
-                <div class="min-[768px]:w-[50%] w-full px-[12px] wow fadeInLeft" data-wow-duration="2s">
+                <div class="min-[768px]:w-[50%] w-full px-[12px] wow fadeInLeft mb-2" data-wow-duration="2s">
                     <div class="gi-ofr-banners">
                         <div class="gi-bnr-body flex flex-row relative overflow-hidden">
                             <div class="gi-bnr-img w-full relative">

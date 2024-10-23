@@ -119,12 +119,15 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#salesRevenueOverview"), options);
 chart.render();
 
-
 //Order Statistics
+datas = document.querySelector("#orderStatisticsChart").getAttribute("pending-data-list");
+var dataList = datas.split(',').map(Number).filter(Boolean);
+
 var options = {
     series: [{
         name: 'Pending',
-        data: [17, 16, 19, 22, 24, 29, 25, 20, 25, 31, 28, 35,]
+        data: dataList
+        // data: [17, 16, 19, 22, 24, 29, 25, 20, 25, 31, 28, 35,]
     },{
         name: 'New Orders',
         data: [30, 24, 32, 27, 16, 22, 32, 21, 24, 20, 38, 28]
